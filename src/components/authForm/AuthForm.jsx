@@ -18,7 +18,7 @@ function AuthForm() {
 
   return (
     <Container
-      boxShadow={"0px 0px 10px white"}
+      boxShadow={"0px 0px 10px black"}
       borderRadius={10}
       maxW={"400px"}
       justifyContent={"center"}
@@ -28,7 +28,7 @@ function AuthForm() {
       mb={10}
     >
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
-        <Image src="/favicon.svg" w={30}></Image>
+        <Image src="../../../public/Logo.svg" w={30}></Image>
         <Text fontSize={20}>Chat App</Text>
       </Flex>
       {signIn ? <SignIn></SignIn> : <SignUp></SignUp>}
@@ -45,7 +45,7 @@ function AuthForm() {
         <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
       </Flex>
 
-      <GoogleAuth></GoogleAuth>
+      <GoogleAuth signIn={signIn}></GoogleAuth>
 
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
         {signIn ? "Create An Account ?" : "Already Have An Account ?"}

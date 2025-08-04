@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Flex,
@@ -7,9 +8,11 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import { VisibilityOff, VisibilityOn } from "../../assets/Constants";
 
 function SignIn() {
+  const [hidePassword, setHidePassword] = useState(true);
   return (
     <form action="">
       <VStack gap={5}>
@@ -19,12 +22,28 @@ function SignIn() {
           type="email"
           cursor={"pointer"}
         ></Input>
-        <Input
-          variant={"flushed"}
-          placeholder="Password..."
-          type="password"
-          cursor={"pointer"}
-        ></Input>
+
+        <Flex gap={50}>
+          <Input
+            variant={"flushed"}
+            placeholder="Password..."
+            type={hidePassword ? "password" : "text"}
+            cursor={"pointer"}
+            w={"100%"}
+          ></Input>
+          <Button
+            onClick={() => {
+              setHidePassword(!hidePassword);
+            }}
+          >
+            {hidePassword ? (
+              <VisibilityOn></VisibilityOn>
+            ) : (
+              <VisibilityOff></VisibilityOff>
+            )}
+          </Button>
+        </Flex>
+
         <Button>Sign In</Button>
       </VStack>
     </form>

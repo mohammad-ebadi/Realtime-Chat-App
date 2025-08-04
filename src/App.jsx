@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home/Home";
 import AuthPage from "./pages/auth/AuthPage.jsx";
 
-
 function App() {
   return (
     <Routes>
