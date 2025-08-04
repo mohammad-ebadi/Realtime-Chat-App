@@ -9,7 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { VisibilityOff, VisibilityOn } from "../../assets/Constants";
+import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
 
 function SignIn() {
   const [hidePassword, setHidePassword] = useState(true);
