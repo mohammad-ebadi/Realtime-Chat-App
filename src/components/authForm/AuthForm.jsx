@@ -20,7 +20,7 @@ function AuthForm() {
     <Container
       boxShadow={"0px 0px 10px black"}
       borderRadius={10}
-      maxW={"400px"}
+      maxW={"350px"}
       justifyContent={"center"}
       alignItems={"center"}
       textAlign={"center"}
