@@ -9,10 +9,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import GoogleAuth from "./GoogleAuth";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import { Logo } from "../../assets/Constants";
+import GoogleAuth from "./GoogleAuth.jsx";
+import SignIn from "./SignIn.jsx";
+import SignUp from "./SignUp.jsx";
+import { Logo } from "../../assets/Constants.jsx";
 
 function AuthForm() {
   const [signIn, setSignIn] = useState(true);
