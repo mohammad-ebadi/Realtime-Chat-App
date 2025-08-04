@@ -13,6 +13,10 @@ import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
 
 function SignIn() {
   const [hidePassword, setHidePassword] = useState(true);
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
   return (
     <form action="">
       <VStack gap={5}>
@@ -21,6 +25,10 @@ function SignIn() {
           placeholder="Email..."
           type="email"
           cursor={"pointer"}
+          value={inputs.email}
+          onChange={(e) => {
+            setInputs({ ...inputs, email: e.target.value });
+          }}
         ></Input>
 
         <Flex gap={50}>
@@ -30,6 +38,10 @@ function SignIn() {
             type={hidePassword ? "password" : "text"}
             cursor={"pointer"}
             w={"100%"}
+            value={inputs.password}
+            onChange={(e) => {
+              setInputs({ ...inputs, password: e.target.value });
+            }}
           ></Input>
           <Button
             onClick={() => {
@@ -44,7 +56,9 @@ function SignIn() {
           </Button>
         </Flex>
 
-        <Button bg={"blue.500"} color={"white"}>Sign In</Button>
+        <Button bg={"blue.500"} color={"white"}>
+          Sign In
+        </Button>
       </VStack>
     </form>
   );
