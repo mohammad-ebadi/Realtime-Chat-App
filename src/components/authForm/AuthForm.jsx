@@ -28,7 +28,7 @@ function AuthForm() {
       mb={10}
     >
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
-        <Image src="../../../public/Logo.svg" w={30}></Image>
+        <Image src="/Logo.svg" w={30}></Image>
         <Text fontSize={20}>Chat App</Text>
       </Flex>
       {signIn ? <SignIn></SignIn> : <SignUp></SignUp>}
