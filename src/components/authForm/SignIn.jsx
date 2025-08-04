@@ -44,7 +44,7 @@ function SignIn() {
           </Button>
         </Flex>
 
-        <Button>Sign In</Button>
+        <Button bg={"blue.500"} color={"white"}>Sign In</Button>
       </VStack>
     </form>
   );
