@@ -15,6 +15,7 @@ function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
   const [inputs, setInputs] = useState({
     email: "",
+    username:"",
     password: "",
   });
   return (
@@ -28,6 +29,17 @@ function SignUp() {
           value={inputs.email}
           onChange={(e) => {
             setInputs({ ...inputs, email: e.target.value });
+          }}
+        ></Input>
+
+        <Input
+          variant={"flushed"}
+          placeholder="Username..."
+          type="text"
+          cursor={"pointer"}
+          value={inputs.username}
+          onChange={(e) => {
+            setInputs({ ...inputs, username: e.target.value });
           }}
         ></Input>
 
