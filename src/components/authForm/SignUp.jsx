@@ -1,12 +1,8 @@
 import {
-  Box,
   Button,
-  Container,
   Flex,
-  Image,
   Input,
   Text,
-  Toast,
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
@@ -32,7 +28,6 @@ function SignUp() {
       const newUser = await createUserWithEmailAndPassword(
         auth,
         inputs.email,
-        inputs.username,
         inputs.password
       );
       if(newUser){
@@ -45,9 +40,11 @@ function SignUp() {
 
         }
         await setDoc(doc(firestore , "users" , newUser.user.uid),userDoc)
+        alert("Good")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      alert("Bad")
     }
   };
   return (
