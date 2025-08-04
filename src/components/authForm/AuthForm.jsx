@@ -52,7 +52,7 @@ function AuthForm() {
         <Text
           cursor={"pointer"}
           textDecoration={"underline"}
-          color={"blue.100"}
+          color={"blue.500"}
           onClick={() => {
             setSignIn(!signIn);
           }}
