@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import GoogleAuth from "./GoogleAuth";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import { Logo } from "../../assets/Constants";
 
 function AuthForm() {
   const [signIn, setSignIn] = useState(true);
@@ -28,7 +29,8 @@ function AuthForm() {
       mb={10}
     >
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
-        <Image src="/Logo.svg" w={30}></Image>
+        {/* <Image src="/Logo.svg" w={30}></Image> */}
+        <Logo></Logo>
         <Text fontSize={20}>Chat App</Text>
       </Flex>
       {signIn ? <SignIn></SignIn> : <SignUp></SignUp>}
