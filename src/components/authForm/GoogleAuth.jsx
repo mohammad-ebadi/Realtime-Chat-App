@@ -10,7 +10,7 @@ function GoogleAuth({ signIn }) {
       cursor={"pointer"}
       borderRadius={5}
       p={2}
-      bg={"gray.400"}
+      bg={"gray.300"}
     >
       <Image src="/google.png" w={30} mr={2}></Image>
       {signIn ? "Sign In With Google" : "Sign Up With Google"}
