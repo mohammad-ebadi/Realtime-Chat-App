@@ -8,7 +8,6 @@ function GoogleAuth({ signIn }) {
       alignItems={"center"}
       m={5}
       cursor={"pointer"}
-      border={"1px solid black"}
       borderRadius={5}
       p={2}
       bg={"gray.700"}
