@@ -6,18 +6,50 @@ import {
   Image,
   Input,
   Text,
+  Toast,
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "firebase/firestore";
+import { firestore, auth } from "../../configs/Firebase.js";
 
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
   const [inputs, setInputs] = useState({
     email: "",
-    username:"",
+    username: "",
     password: "",
   });
+
+  const handleSignUp = async () => {
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        auth,
+        inputs.email,
+        inputs.username,
+        inputs.password
+      );
+      if(newUser){
+        const userDoc = {
+          uid : newUser.user.uid,
+          email : inputs.email,
+          username : inputs.username,
+          profilePicURL : "",
+          createdAt: serverTimestamp(),
+
+        }
+        await setDoc(doc(firestore , "users" , newUser.user.uid),userDoc)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <form action="">
       <VStack gap={5}>
@@ -68,7 +100,13 @@ function SignUp() {
           </Button>
         </Flex>
 
-        <Button bg={"blue.500"} color={"white"}>
+        <Button
+          bg={"blue.500"}
+          color={"white"}
+          onClick={() => {
+            handleSignUp;
+          }}
+        >
           Sign Up
         </Button>
       </VStack>
