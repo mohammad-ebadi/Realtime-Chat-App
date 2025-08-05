@@ -40,7 +40,7 @@ function SignUp() {
         toast.success("Your Account Created Successfully");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message	);
     }
   };
 
