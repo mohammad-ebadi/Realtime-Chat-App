@@ -17,6 +17,9 @@ function SignUp() {
     password: "",
   });
 
+  if (!inputs.email || !inputs.username || !inputs.password) {
+    return;
+  }
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
