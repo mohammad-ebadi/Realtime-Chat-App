@@ -1,14 +1,13 @@
-import { Button, Flex, Input, useToast, VStack } from "@chakra-ui/react";
+import { Button, Flex, Input, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { auth, firestore } from "../../configs/Firebase.js";
-import Toasts from "../chakraUi/Toasts.jsx";
+import useAppToast from "../../hooks/useAppToast.js";
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
-  const toast = useToast();
-  const statuses = ['success', 'error', 'warning', 'info']
+  const toast = useAppToast();
   const [inputs, setInputs] = useState({
     email: "",
     username: "",
@@ -33,17 +32,10 @@ function SignUp() {
           createdAt: serverTimestamp(),
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
-        // alert("Your Account Created successfully ✅.");
-        toast({
-                title: "Your Account Created Successfully",
-                status: statuses[0],
-                isClosable: true,
-              })
+        toast.success("Your Account Created Successfully");
       }
     } catch (error) {
       console.log(error);
-      // alert("Error");
-      <Toasts title={"Error"} status={"error"}></Toasts>
     }
   };
 
