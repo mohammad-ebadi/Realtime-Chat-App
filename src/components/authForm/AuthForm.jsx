@@ -19,7 +19,7 @@ function AuthForm() {
 
   return (
     <Container
-      boxShadow={"0px 0px 10px black"}
+      boxShadow={"0px 0px 20px gray"}
       borderRadius={10}
       maxW={"360px"}
       justifyContent={"center"}
@@ -27,10 +27,11 @@ function AuthForm() {
       textAlign={"center"}
       p={10}
       mb={10}
+      bg={"rgba(237,242,247 , 0.8)"}
     >
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
         <Logo></Logo>
-        <Text fontSize={20} fontWeight={"bold"}>
+        <Text fontSize={20} fontWeight={"bold"} textShadow={"0px 1px 1px black"}>
           Chat App
         </Text>
       </Flex>
@@ -55,11 +56,11 @@ function AuthForm() {
         <Text
           cursor={"pointer"}
           textDecoration={"underline"}
-          color={"blue.500"}
+          color={"blue.400"}
           onClick={() => {
             setSignIn(!signIn);
           }}
-          _hover={{ color: "blue.300" }}
+          _hover={{ color: "blue.700" }}
           transition={"0.3s ease"}
         >
           {signIn ? "Sign Up" : "Sign In"}

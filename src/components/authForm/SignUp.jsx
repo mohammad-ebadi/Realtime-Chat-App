@@ -69,7 +69,7 @@ function SignUp() {
           </Button>
         </Flex>
 
-        <Button bg={"blue.500"} color={"white"} type="submit">
+        <Button bg={"blue.300"} color={"white"} _hover={{bg:"blue.600"}} type="submit">
           Sign Up
         </Button>
       </VStack>

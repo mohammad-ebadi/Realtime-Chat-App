@@ -52,7 +52,7 @@ function SignIn() {
           </Button>
         </Flex>
 
-        <Button bg={"blue.500"} color={"white"}>
+        <Button bg={"blue.300"} color={"white"} _hover={{bg:"blue.600"}}>
           Sign In
         </Button>
       </VStack>
