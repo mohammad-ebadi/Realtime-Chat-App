@@ -4,6 +4,7 @@ import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { auth, firestore } from "../../configs/Firebase.js";
+import Toasts from "../chakraUi/Toasts.jsx";
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
   const toast = useToast();
@@ -41,7 +42,8 @@ function SignUp() {
       }
     } catch (error) {
       console.log(error);
-      alert("Error");
+      // alert("Error");
+      <Toasts title={"Error"} status={"error"}></Toasts>
     }
   };
 
