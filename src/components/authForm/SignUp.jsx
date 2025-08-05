@@ -23,7 +23,6 @@ function SignUp() {
     }
     e.preventDefault();
     try {
-      
       // Create a new user
       const newUser = await createUserWithEmailAndPassword(
         auth,
