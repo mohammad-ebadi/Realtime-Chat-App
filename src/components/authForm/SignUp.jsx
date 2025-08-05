@@ -17,10 +17,10 @@ function SignUp() {
     password: "",
   });
 
-  if (!inputs.email || !inputs.username || !inputs.password) {
-    return;
-  }
   const handleSignUp = async (e) => {
+    if (!inputs.email || !inputs.username || !inputs.password) {
+      return;
+    }
     e.preventDefault();
     try {
       // Create a new user
