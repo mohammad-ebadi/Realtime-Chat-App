@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "../../components/sidebar/SideBar.jsx";
+import SideBar from "../../components/sideBar/SideBar.jsx";
 import ChatBar from "../../components/chatBar/ChatBar.jsx";
 import { Flex } from "@chakra-ui/react";
 
