@@ -1,7 +1,9 @@
 import { Button, Flex, Input, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { serverTimestamp, setDoc, doc } from "firebase/firestore";
+import { auth, firestore } from "../../configs/Firebase.js";
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
 
@@ -13,6 +15,30 @@ function SignUp() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        auth,
+        inputs.email,
+        inputs.password
+      );
+
+      if (newUser) {
+        const userDoc = {
+          uid: newUser.user.uid,
+          email: inputs.email,
+          username: inputs.username,
+          profilePicURL: "",
+          createdAt: serverTimestamp(),
+        };
+        await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
+        alert("Your Account Created successfully ✅.");
+      }
+
+      
+    } catch (error) {
+      console.log(error);
+      alert("Error");
+    }
   };
 
   return (
@@ -69,7 +95,12 @@ function SignUp() {
           </Button>
         </Flex>
 
-        <Button bg={"blue.300"} color={"white"} _hover={{bg:"blue.600"}} type="submit">
+        <Button
+          bg={"blue.300"}
+          color={"white"}
+          _hover={{ bg: "blue.600" }}
+          type="submit"
+        >
           Sign Up
         </Button>
       </VStack>
