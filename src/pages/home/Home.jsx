@@ -1,6 +1,6 @@
 import React from "react";
-import SideBar from "../../components/sidebar/Sidebar";
-import ChatBar from "../../components/chatBar/ChatBar";
+import SideBar from "../../components/sidebar/SideBar.jsx";
+import ChatBar from "../../components/chatBar/ChatBar.jsx";
 import { Flex } from "@chakra-ui/react";
 
 function Home() {
