@@ -34,7 +34,7 @@ function SignUp() {
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
         // alert("Your Account Created successfully ✅.");
         toast({
-                title: "Your Account Created successfully",
+                title: "Your Account Created Successfully",
                 status: statuses[0],
                 isClosable: true,
               })
