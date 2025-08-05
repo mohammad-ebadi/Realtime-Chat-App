@@ -7,7 +7,10 @@ import { auth, firestore } from "../../configs/Firebase.js";
 import useAppToast from "../../hooks/useAppToast.js";
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
+
+  // custom hook for toast
   const toast = useAppToast();
+
   const [inputs, setInputs] = useState({
     email: "",
     username: "",
@@ -32,6 +35,8 @@ function SignUp() {
           createdAt: serverTimestamp(),
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
+
+        // custom hook for toast
         toast.success("Your Account Created Successfully");
       }
     } catch (error) {
