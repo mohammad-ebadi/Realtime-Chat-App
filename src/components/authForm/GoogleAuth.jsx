@@ -11,7 +11,8 @@ function GoogleAuth({ signIn }) {
       borderRadius={5}
       p={2}
       bg={"gray.300"}
-      _hover={{bg:"gray.500"}}
+      _hover={{ bg: "gray.500" }}
+      transition={"0.3s ease"}
     >
       <Image src="/google.png" w={30} mr={2}></Image>
       {signIn ? "Sign In With Google" : "Sign Up With Google"}

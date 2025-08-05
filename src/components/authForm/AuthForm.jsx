@@ -30,7 +30,9 @@ function AuthForm() {
     >
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
         <Logo></Logo>
-        <Text fontSize={20} fontWeight={"bold"}>Chat App</Text>
+        <Text fontSize={20} fontWeight={"bold"}>
+          Chat App
+        </Text>
       </Flex>
       {signIn ? <SignIn></SignIn> : <SignUp></SignUp>}
 
@@ -57,6 +59,8 @@ function AuthForm() {
           onClick={() => {
             setSignIn(!signIn);
           }}
+          _hover={{ color: "blue.300" }}
+          transition={"0.3s ease"}
         >
           {signIn ? "Sign Up" : "Sign In"}
         </Text>
