@@ -1,54 +1,26 @@
-import {
-  Button,
-  Flex,
-  Input,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Button, Flex, Input, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import {
-  doc,
-  setDoc,
-  serverTimestamp
-} from "firebase/firestore";
-import { firestore, auth } from "../../configs/Firebase.js";
 
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
+
   const [inputs, setInputs] = useState({
     email: "",
     username: "",
     password: "",
   });
 
-  const handleSignUp = async () => {
-    try {
-      const newUser = await createUserWithEmailAndPassword(
-        auth,
-        inputs.email,
-        inputs.password
-      );
-      if(newUser){
-        const userDoc = {
-          uid : newUser.user.uid,
-          email : inputs.email,
-          username : inputs.username,
-          profilePicURL : "",
-          createdAt: serverTimestamp(),
-
-        }
-        await setDoc(doc(firestore , "users" , newUser.user.uid),userDoc)
-        alert("Good")
-      }
-    } catch (error) {
-      console.log(error)
-      alert("Bad")
-    }
+  const handleSignUp = async (e) => {
+    e.preventDefault();
   };
+
   return (
-    <form action="">
+    <form
+      onSubmit={(e) => {
+        handleSignUp(e);
+      }}
+    >
       <VStack gap={5}>
         <Input
           variant={"flushed"}
@@ -97,13 +69,7 @@ function SignUp() {
           </Button>
         </Flex>
 
-        <Button
-          bg={"blue.500"}
-          color={"white"}
-          onClick={() => {
-            handleSignUp;
-          }}
-        >
+        <Button bg={"blue.500"} color={"white"} type="submit">
           Sign Up
         </Button>
       </VStack>
@@ -112,3 +78,6 @@ function SignUp() {
 }
 
 export default SignUp;
+
+
+

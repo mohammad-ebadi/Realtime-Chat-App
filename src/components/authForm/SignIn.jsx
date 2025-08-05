@@ -1,11 +1,7 @@
 import {
-  Box,
   Button,
-  Container,
   Flex,
-  Image,
   Input,
-  Text,
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
