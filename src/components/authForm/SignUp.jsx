@@ -16,12 +16,12 @@ function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
+      // Create a new user
       const newUser = await createUserWithEmailAndPassword(
         auth,
         inputs.email,
         inputs.password
       );
-
       if (newUser) {
         const userDoc = {
           uid: newUser.user.uid,
@@ -33,14 +33,15 @@ function SignUp() {
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
         alert("Your Account Created successfully ✅.");
       }
-
-      
+  
     } catch (error) {
       console.log(error);
       alert("Error");
     }
   };
 
+
+  
   return (
     <form
       onSubmit={(e) => {
