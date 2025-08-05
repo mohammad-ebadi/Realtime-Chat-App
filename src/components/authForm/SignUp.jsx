@@ -18,12 +18,12 @@ function SignUp() {
   });
 
   const handleSignUp = async (e) => {
-    
+    if (!inputs.email || !inputs.username || !inputs.password) {
+      return toast.error("An error has occurred. Please try again.");
+    }
     e.preventDefault();
     try {
-      if (!inputs.email || !inputs.username || !inputs.password) {
-      return;
-    }
+      
       // Create a new user
       const newUser = await createUserWithEmailAndPassword(
         auth,
