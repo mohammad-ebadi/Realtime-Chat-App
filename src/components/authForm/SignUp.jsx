@@ -5,8 +5,11 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { auth, firestore } from "../../configs/Firebase.js";
 import useAppToast from "../../hooks/useAppToast.js";
+import { useNavigate } from "react-router-dom";
+
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
+  const navigate = useNavigate()
 
   // custom hook for toast
   const toast = useAppToast();
@@ -42,6 +45,7 @@ function SignUp() {
         // custom hook for toast
         toast.success("Your Account Created Successfully");
       }
+      navigate("/")
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
