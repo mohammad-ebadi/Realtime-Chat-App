@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // custom hook for toast
   const toast = useAppToast();
@@ -21,10 +21,11 @@ function SignUp() {
   });
 
   const handleSignUp = async (e) => {
-    if (!inputs.email || !inputs.username || !inputs.password) {
+    e.preventDefault();
+    if (!inputs.email.trim() || !inputs.username.trim() || !inputs.password.trim()) {
       return toast.error("An error has occurred. Please try again.");
     }
-    e.preventDefault();
+
     try {
       // Create a new user
       const newUser = await createUserWithEmailAndPassword(
@@ -45,7 +46,7 @@ function SignUp() {
         // custom hook for toast
         toast.success("Your Account Created Successfully");
       }
-      navigate("/")
+      navigate("/");
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
@@ -105,6 +106,7 @@ function SignUp() {
             }}
           ></Input>
           <Button
+            type="button"
             onClick={() => {
               setHidePassword(!hidePassword);
             }}
