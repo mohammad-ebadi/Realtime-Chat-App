@@ -17,11 +17,11 @@ function SignUp() {
     password: "",
   });
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
     if (!inputs.email || !inputs.username || !inputs.password) {
-      return;
+      return toast.error("An error has occurred. Please try again.");
     }
-    
+    e.preventDefault();
     try {
       // Create a new user
       const newUser = await createUserWithEmailAndPassword(
@@ -61,8 +61,8 @@ function SignUp() {
 
   return (
     <form
-      onSubmit={() => {
-        handleSignUp();
+      onSubmit={(e) => {
+        handleSignUp(e);
       }}
     >
       <VStack gap={5}>
