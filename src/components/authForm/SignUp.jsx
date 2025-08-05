@@ -6,7 +6,8 @@ import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { auth, firestore } from "../../configs/Firebase.js";
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
-
+  const toast = useToast();
+  const statuses = ['success', 'error', 'warning', 'info']
   const [inputs, setInputs] = useState({
     email: "",
     username: "",
@@ -31,17 +32,19 @@ function SignUp() {
           createdAt: serverTimestamp(),
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
-        alert("Your Account Created successfully ✅.");
+        // alert("Your Account Created successfully ✅.");
+        toast({
+                title: "Your Account Created successfully ✅.",
+                status: statuses[0],
+                isClosable: true,
+              })
       }
-  
     } catch (error) {
       console.log(error);
       alert("Error");
     }
   };
 
-
-  
   return (
     <form
       onSubmit={(e) => {
