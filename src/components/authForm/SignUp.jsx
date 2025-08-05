@@ -40,7 +40,19 @@ function SignUp() {
         toast.success("Your Account Created Successfully");
       }
     } catch (error) {
-      console.log(error.message	);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          toast.warning("This email is taken by someone else.");
+          break;
+        case "auth/invalid-email":
+          toast.warning("Your email is not valid.");
+          break;
+        case "auth/weak-password":
+          toast.warning("Your password must be at least 6 characters long.");
+          break;
+        default:
+          toast.error("An error has occurred. Please try again.");
+      }
     }
   };
 
