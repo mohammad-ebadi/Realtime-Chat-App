@@ -4,7 +4,7 @@ import RecentUsersChat from "./RecentUsersChat";
 
 function RecentUsers() {
   return (
-    <Box bg={"purple.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
+    <Box bg={"purple.200"} w={"full"} maxH={"68vh"} overflow={"auto"}>
       <RecentUsersChat></RecentUsersChat>
       <RecentUsersChat></RecentUsersChat>
       <RecentUsersChat></RecentUsersChat>
