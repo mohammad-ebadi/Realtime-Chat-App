@@ -3,13 +3,13 @@ import React from "react";
 
 function RecentUsersChat() {
   return (
-    <Box mb={3} border={"1px dashed black"} cursor={"pointer"}>
+    <Box borderBottom={"1px solid black"} cursor={"pointer"} bg={"gray.100"}>
       <Flex alignItems={"center"} gap={1}>
-        <Flex alignItems={"center"}>
+        <Flex alignItems={"center"} p={1}>
           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
         </Flex>
 
-        <VStack>
+        <VStack align={"start"}>
           <Text fontSize={"10px"}>Username</Text>
           <Text fontSize={"12px"}>
             Hey whats up dud ? How are you doing?

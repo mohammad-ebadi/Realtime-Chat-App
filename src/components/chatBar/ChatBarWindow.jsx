@@ -4,7 +4,7 @@ import RecentUsersChat from '../sideBar/RecentUsersChat'
 
 function ChatBarWindow() {
   return (
-    <Box bg={"yellow.300"} w={"full"} h={"80vh"} overflow={"auto"}>
+    <Box bg={"yellow.300"} w={"full"} h={"82vh"} overflow={"auto"}>
       
       <RecentUsersChat></RecentUsersChat>
       <RecentUsersChat></RecentUsersChat>

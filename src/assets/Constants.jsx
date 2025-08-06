@@ -18,3 +18,12 @@ export const Send = () => (
   <Image src="/Send.svg"></Image>
 );
 
+
+export const Search = () => (
+  <Image src="/Search.svg"></Image>
+);
+
+export const Edit = () => (
+  <Image src="/Edit.svg"></Image>
+);
+

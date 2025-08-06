@@ -7,12 +7,13 @@ import SideBarNavbar from "./SideBarNavbar.jsx";
 function SideBar() {
   return (
     <Box bg={"green.100"} w={"30vw"}>
-      <VStack>
+      <VStack gap={0}>
         <SideBarNavbar></SideBarNavbar>
         <SearchBar></SearchBar>
         <RecentUsers></RecentUsers>
       </VStack>
-      <p>Built by MOHAMMAD</p>
+
+      <p>Built by Mohammad</p>
     </Box>
   );
 }

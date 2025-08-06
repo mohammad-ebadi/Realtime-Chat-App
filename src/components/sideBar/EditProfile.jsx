@@ -13,7 +13,9 @@ import {
   Avatar,
   Button,
   Flex,
+  Text,
 } from "@chakra-ui/react";
+import { Edit } from '../../assets/Constants';
 
 
 function EditProfile() {
@@ -21,8 +23,8 @@ function EditProfile() {
 
   return (
     <>
-         <Button onClick={onOpen} size={"xs"}>
-          Edit
+         <Button onClick={onOpen} size={"xl"} _hover={{bg:"transparent" , transform: "scale(1.2)"}} bg={"none"}>
+          <Edit></Edit>
         </Button>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -38,7 +40,8 @@ function EditProfile() {
                 />
                 <Input type="file" border={"none"} cursor={"pointer"}></Input>
               </Flex>
-              <VStack >
+              <VStack align={"start"}>
+                <Text fontSize={14}>Current Username :</Text>
                 <Input placeholder="Usrename..."></Input>
               </VStack>
             </ModalBody>

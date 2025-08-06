@@ -1,25 +1,26 @@
-import { Box, Button, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Avatar } from "@chakra-ui/react";
 import EditProfile from "./EditProfile.jsx";
 import { Logout } from "../../assets/Constants.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function SideBarNavbar() {
   const navigate = useNavigate();
   return (
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
-        <Flex alignItems={"center"} gap={1}>
+        <Flex alignItems={"center"} gap={1} p={1}>
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
           <p>Username</p>
         </Flex>
-        <Flex gap={2}>
+        <Flex gap={2} alignItems={"center"} mr={2}>
           <EditProfile></EditProfile>
           <Box
             onClick={() => {
               navigate("/auth");
             }}
             cursor={"pointer"}
+            _hover={{ bg: "transparent", transform: "scale(1.2)" }}
           >
             <Logout></Logout>
           </Box>
