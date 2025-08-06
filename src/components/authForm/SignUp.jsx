@@ -80,6 +80,7 @@ function SignUp() {
           onChange={(e) => {
             setInputs({ ...inputs, email: e.target.value });
           }}
+          borderColor={"gray.400"}
         ></Input>
 
         <Input
@@ -91,6 +92,7 @@ function SignUp() {
           onChange={(e) => {
             setInputs({ ...inputs, username: e.target.value });
           }}
+          borderColor={"gray.400"}
         ></Input>
 
         <Flex gap={50}>
@@ -104,12 +106,15 @@ function SignUp() {
             onChange={(e) => {
               setInputs({ ...inputs, password: e.target.value });
             }}
+            borderColor={"gray.400"}
           ></Input>
           <Button
             type="button"
             onClick={() => {
               setHidePassword(!hidePassword);
             }}
+            bg={"none"}
+            _hover={{bg:"transparent" , transform: "scale(1.2)"}}
           >
             {hidePassword ? (
               <VisibilityOn></VisibilityOn>

@@ -25,6 +25,7 @@ function SignIn() {
           onChange={(e) => {
             setInputs({ ...inputs, email: e.target.value });
           }}
+          borderColor={"gray.400"}
         ></Input>
 
         <Flex gap={50}>
@@ -38,11 +39,14 @@ function SignIn() {
             onChange={(e) => {
               setInputs({ ...inputs, password: e.target.value });
             }}
+            borderColor={"gray.400"}
           ></Input>
           <Button
             onClick={() => {
               setHidePassword(!hidePassword);
             }}
+            bg={"none"}
+            _hover={{bg:"transparent" , transform: "scale(1.2)"}}
           >
             {hidePassword ? (
               <VisibilityOn></VisibilityOn>

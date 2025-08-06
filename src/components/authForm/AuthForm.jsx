@@ -60,7 +60,7 @@ function AuthForm() {
           onClick={() => {
             setSignIn(!signIn);
           }}
-          _hover={{ color: "blue.700" }}
+          _hover={{ color: "blue.700" ,transform: "scale(1.1)"}}
           transition={"0.3s ease"}
         >
           {signIn ? "Sign Up" : "Sign In"}
