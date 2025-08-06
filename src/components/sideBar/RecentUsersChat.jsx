@@ -12,7 +12,7 @@ function RecentUsersChat() {
         <VStack>
           <Text fontSize={"10px"}>Username</Text>
           <Text fontSize={"12px"}>
-            nknknkkkgklnrglnargblrbgrbhlboiphopi[iop[jkohgnklglkrngklkgnargklb
+            Hey whats up dud ? How are you doing?
           </Text>
         </VStack>
       </Flex>

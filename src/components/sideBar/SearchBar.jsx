@@ -3,7 +3,7 @@ import React from "react";
 
 function SearchBar() {
   return (
-    <Box bg={"orange.400"} w={"full"} h={"auto"} >
+    <Box bg={"orange.300"} w={"full"} h={"auto"} >
       <VStack>
         <Input placeholder="Search User..." variant={"flushed"}></Input>
         <p>Seach Results</p>
