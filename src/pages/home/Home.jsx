@@ -5,12 +5,16 @@ import { Flex } from "@chakra-ui/react";
 
 function Home() {
   return (
-    <Flex>
-      <SideBar></SideBar>
-      <ChatBar></ChatBar>
-    
-    </Flex>
-
+    <>
+      <Flex h={"100vh"} >
+        <Flex  borderRight={"1px solid black"}>
+          <SideBar></SideBar>
+        </Flex>
+        <Flex >
+          <ChatBar></ChatBar>
+        </Flex>
+      </Flex>
+    </>
   );
 }
 

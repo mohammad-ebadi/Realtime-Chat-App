@@ -9,3 +9,7 @@ export const VisibilityOn = () => (
 export const VisibilityOff = () => (
   <Image src="/VisibilityOff.svg"></Image>
 );
+
+export const Logout = () => (
+  <Image src="/Logout.svg"></Image>
+);
