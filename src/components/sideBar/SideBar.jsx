@@ -1,8 +1,8 @@
 import { Box, Flex, VStack } from "@chakra-ui/react";
 import React from "react";
-import SideBarNavbar from "./SideBarNavbar";
 import SearchBar from "./SearchBar.jsx";
 import RecentUsers from "./RecentUsers.jsx";
+import SideBarNavbar from "./SideBarNavbar.jsx";
 
 function SideBar() {
   return (

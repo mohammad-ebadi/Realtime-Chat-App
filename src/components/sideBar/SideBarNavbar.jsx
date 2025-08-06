@@ -5,18 +5,22 @@ import EditProfile from "./EditProfile.jsx";
 import { Logout } from "../../assets/Constants.jsx";
 import { Link, useNavigate } from "react-router-dom";
 function SideBarNavbar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
-    <Box bg={"red.100"} w={"full"}>
-      <Flex alignItems={"center"}>
+    <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
+      <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1}>
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
           <p>Username</p>
         </Flex>
-
         <Flex gap={2}>
           <EditProfile></EditProfile>
-          <Box onClick={()=>{navigate("/auth")}} cursor={"pointer"}>
+          <Box
+            onClick={() => {
+              navigate("/auth");
+            }}
+            cursor={"pointer"}
+          >
             <Logout></Logout>
           </Box>
         </Flex>
