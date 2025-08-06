@@ -6,17 +6,7 @@ function ChatBarWindow() {
   return (
     <Box bg={"yellow.300"} w={"full"} h={"82vh"} overflow={"auto"}>
       
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
+ 
     </Box>
   )
 }
