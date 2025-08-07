@@ -7,9 +7,6 @@ function ProtectedRoute({ children }) {
   if (!user) {
     return <Navigate to={"/auth"} replace></Navigate>;
   }
-  else{
-    <Navigate to={`/${user.username}`}></Navigate>
-  }
   return children;
 }
 
