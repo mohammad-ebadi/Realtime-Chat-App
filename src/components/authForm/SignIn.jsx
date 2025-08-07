@@ -23,7 +23,9 @@ function SignIn() {
     try {
       await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
       toast.success("Signed in successfully!");
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":

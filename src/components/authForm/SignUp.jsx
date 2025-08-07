@@ -65,8 +65,10 @@ function SignUp() {
 
         // custom hook for toast
         toast.success("Your Account Created Successfully");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       }
-      navigate("/");
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
