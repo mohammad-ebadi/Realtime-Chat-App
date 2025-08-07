@@ -14,8 +14,7 @@ function App() {
   const setUser = useAuthStore((state) => state.setUser);
   const clearUser = useAuthStore((state) => state.clearUser);
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -25,6 +24,7 @@ function App() {
           const userDocSnap = await getDoc(userDocRef);
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
+            const username = userData.username || null;
             setUser({
               uid: user.uid,
               email: user.email,
@@ -32,6 +32,9 @@ function App() {
               username: userData.username || null,
               profilePicURL: userData.profilePicURL || null,
             });
+            if (username) {
+              navigate(`/${username}`, { replace: true });
+            }
           } else {
             setUser({
               uid: user.uid,
@@ -50,12 +53,18 @@ function App() {
       }
     });
     return () => unsubscribe();
-  }, [setUser, clearUser]);
-
+  }, [setUser, clearUser, navigate]);
 
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute><Home></Home></ProtectedRoute>}></Route>
+      <Route
+        path="/:username"
+        element={
+          <ProtectedRoute>
+            <Home></Home>
+          </ProtectedRoute>
+        }
+      ></Route>
       <Route path="/auth" element={<AuthPage></AuthPage>}></Route>
     </Routes>
   );
