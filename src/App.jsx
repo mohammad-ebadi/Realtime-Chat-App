@@ -7,9 +7,14 @@ import { auth, firestore } from "./configs/Firebase.js";
 import { useAuthStore } from "./stores/useAuthStore.js";
 import { doc, getDoc } from "firebase/firestore";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute.jsx";
+import { useNavigate } from "react-router-dom";
 
 function App() {
-  const { user, setUser, clearUser } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
+  const clearUser = useAuthStore((state) => state.clearUser);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -26,9 +31,7 @@ function App() {
               username: userData.username || null,
               profilePicURL: userData.profilePicURL || null,
             });
-            if (userData.username) {
-              window.location.href = `/${userData.username}`;
-            }
+          
           } else {
             setUser({
               uid: user.uid,
@@ -51,9 +54,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/auth" replace />} />
       <Route
-        path="/:username"
+        path="/"
         element={
           <ProtectedRoute>
             <Home></Home>

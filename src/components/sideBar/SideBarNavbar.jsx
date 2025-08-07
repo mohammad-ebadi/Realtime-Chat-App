@@ -14,7 +14,7 @@ function SideBarNavbar() {
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={1}>
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-          <p>{user?.username || 'Loading...'}</p>
+          <p>{user?.username}</p>
         </Flex>
         <Flex gap={2} alignItems={"center"} mr={2}>
           <EditProfile></EditProfile>

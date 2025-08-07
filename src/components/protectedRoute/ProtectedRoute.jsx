@@ -5,7 +5,7 @@ import { useAuthStore } from "../../stores/useAuthStore";
 function ProtectedRoute({ children }) {
   const { user } = useAuthStore();
   if (!user) {
-   return <Navigate to={"/auth"} replace />;
+   return <Navigate to={"/auth"} replace></Navigate>;
   }
   return children;
 }
