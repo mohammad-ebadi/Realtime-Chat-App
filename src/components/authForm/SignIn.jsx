@@ -1,20 +1,52 @@
-import {
-  Button,
-  Flex,
-  Input,
-  VStack,
-} from "@chakra-ui/react";
+import { Button, Flex, Input, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
+import useAppToast from "../../hooks/useAppToast.js";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../configs/Firebase.js";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [hidePassword, setHidePassword] = useState(true);
+  const toast = useAppToast();
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    if (!inputs.email.trim() || !inputs.password.trim()) {
+      return toast.error("An error has occurred. Please try again.");
+    }
+    try {
+      await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
+      toast.success("Signed in successfully!");
+      navigate("/");
+    } catch (error) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          toast.warning("No user found with this email.");
+          break;
+        case "auth/wrong-password":
+          toast.warning("The password is incorrect.");
+          break;
+        case "auth/invalid-email":
+          toast.warning("Your email is not valid.");
+          break;
+        default:
+          toast.error("An error has occurred. Please try again.");
+      }
+    }
+  };
+
   return (
-    <form action="">
+    <form
+      onSubmit={(e) => {
+        handleSignIn(e);
+      }}
+    >
       <VStack gap={5}>
         <Input
           variant={"flushed"}
@@ -46,7 +78,7 @@ function SignIn() {
               setHidePassword(!hidePassword);
             }}
             bg={"none"}
-            _hover={{bg:"transparent" , transform: "scale(1.2)"}}
+            _hover={{ bg: "transparent", transform: "scale(1.2)" }}
           >
             {hidePassword ? (
               <VisibilityOn></VisibilityOn>
@@ -56,7 +88,12 @@ function SignIn() {
           </Button>
         </Flex>
 
-        <Button bg={"blue.300"} color={"white"} _hover={{bg:"blue.600"}}>
+        <Button
+          bg={"blue.300"}
+          color={"white"}
+          _hover={{ bg: "blue.600" }}
+          type="submit"
+        >
           Sign In
         </Button>
       </VStack>
