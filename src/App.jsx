@@ -54,7 +54,7 @@ function App() {
 
   return (
     <Routes>
-      <Route
+      {/* <Route
         path="/"
         element={
           <ProtectedRoute>
@@ -62,6 +62,12 @@ function App() {
           </ProtectedRoute>
         }
       ></Route>
+      <Route path="/auth" element={<AuthPage></AuthPage>}></Route>
+ */}
+
+
+
+      <Route path="/" element={<Home></Home>}></Route>
       <Route path="/auth" element={<AuthPage></AuthPage>}></Route>
     </Routes>
   );
