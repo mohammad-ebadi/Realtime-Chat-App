@@ -7,14 +7,9 @@ import { auth, firestore } from "./configs/Firebase.js";
 import { useAuthStore } from "./stores/useAuthStore.js";
 import { doc, getDoc } from "firebase/firestore";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute.jsx";
-import { useNavigate } from "react-router-dom";
 
 function App() {
-  const user = useAuthStore((state) => state.user);
-  const setUser = useAuthStore((state) => state.setUser);
-  const clearUser = useAuthStore((state) => state.clearUser);
-
-  const navigate = useNavigate();
+  const { user, setUser, clearUser } = useAuthStore();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -24,7 +19,6 @@ function App() {
           const userDocSnap = await getDoc(userDocRef);
           if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
-            const username = userData.username || null;
             setUser({
               uid: user.uid,
               email: user.email,
@@ -32,8 +26,8 @@ function App() {
               username: userData.username || null,
               profilePicURL: userData.profilePicURL || null,
             });
-            if (username) {
-              navigate(`/${username}`, { replace: true });
+            if (userData.username) {
+              window.location.href = `/${userData.username}`;
             }
           } else {
             setUser({
@@ -53,10 +47,11 @@ function App() {
       }
     });
     return () => unsubscribe();
-  }, [setUser, clearUser, navigate]);
+  }, [setUser, clearUser]);
 
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/auth" replace />} />
       <Route
         path="/:username"
         element={

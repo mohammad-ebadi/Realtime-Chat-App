@@ -47,8 +47,8 @@ function EditProfile() {
               <Input type="file" border={"none"} cursor={"pointer"}></Input>
             </Flex>
             <VStack align={"start"}>
-              <Text fontSize={14}>`Current Username :${user?.username}`</Text>
-              <Input placeholder="Usrename..."></Input>
+              <Text fontSize={14}>Current Username: {user?.username || 'Not set'}</Text>
+              <Input placeholder="Username..."></Input>
             </VStack>
           </ModalBody>
           <ModalFooter>
