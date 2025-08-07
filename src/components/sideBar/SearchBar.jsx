@@ -8,7 +8,7 @@ function SearchBar() {
       
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex>
-          <Input placeholder="Search User..." border={"none"} borderRadius={0} focusBorderColor='transparent' _focus={{_placeholder:{color:"blue.500" }}} ></Input>
+          <Input placeholder="Search User..." border={"none"} borderRadius={0} focusBorderColor='transparent'></Input>
           
         </Flex>
         <Flex>

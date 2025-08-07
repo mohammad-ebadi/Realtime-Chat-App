@@ -2,7 +2,15 @@ import { Button, Flex, Input, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { VisibilityOff, VisibilityOn } from "../../assets/Constants.jsx";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { serverTimestamp, setDoc, doc } from "firebase/firestore";
+import {
+  serverTimestamp,
+  setDoc,
+  doc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { auth, firestore } from "../../configs/Firebase.js";
 import useAppToast from "../../hooks/useAppToast.js";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +19,7 @@ function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
   const navigate = useNavigate();
 
-  // custom hook for toast
+  // Custom hook for toast
   const toast = useAppToast();
 
   const [inputs, setInputs] = useState({
@@ -22,10 +30,22 @@ function SignUp() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    if (!inputs.email.trim() || !inputs.username.trim() || !inputs.password.trim()) {
+    if (
+      !inputs.email.trim() ||
+      !inputs.username.trim() ||
+      !inputs.password.trim()
+    ) {
       return toast.error("An error has occurred. Please try again.");
     }
 
+    // Checking for same username
+    const usersRef = collection(firestore, "users");
+    const q = query(usersRef, where("username", "==", inputs.username));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      toast.warning("This username already taken !!!");
+      return;
+    }
     try {
       // Create a new user
       const newUser = await createUserWithEmailAndPassword(
@@ -114,7 +134,7 @@ function SignUp() {
               setHidePassword(!hidePassword);
             }}
             bg={"none"}
-            _hover={{bg:"transparent" , transform: "scale(1.2)"}}
+            _hover={{ bg: "transparent", transform: "scale(1.2)" }}
           >
             {hidePassword ? (
               <VisibilityOn></VisibilityOn>
