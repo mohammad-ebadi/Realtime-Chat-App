@@ -6,10 +6,16 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, firestore } from "./configs/Firebase.js";
 import { useAuthStore } from "./stores/useAuthStore.js";
 import { doc, getDoc } from "firebase/firestore";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute.jsx";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
   const clearUser = useAuthStore((state) => state.clearUser);
+
+  const navigate = useNavigate()
+  
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -45,9 +51,11 @@ function App() {
     });
     return () => unsubscribe();
   }, [setUser, clearUser]);
+
+
   return (
     <Routes>
-      <Route path="/" element={<Home></Home>}></Route>
+      <Route path="/" element={<ProtectedRoute><Home></Home></ProtectedRoute>}></Route>
       <Route path="/auth" element={<AuthPage></AuthPage>}></Route>
     </Routes>
   );
