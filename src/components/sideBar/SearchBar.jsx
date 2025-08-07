@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Input, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Search } from "../../assets/Constants";
+import SearchResults from "./SearchResults";
 
 function SearchBar() {
   return (
@@ -12,13 +13,13 @@ function SearchBar() {
           
         </Flex>
         <Flex>
-            <Button bg={"transparent"}  _hover={{bg:"none", transform: "scale(1.2)"}}><Search></Search></Button>
+            <Box bg={"transparent"}  _hover={{bg:"none", transform: "scale(1.2)"}} cursor={"pointer"} pr={3}><Search></Search></Box>
         </Flex>
       </Flex>
         
         
         
-        <p>Search Result . . .</p>
+        <SearchResults></SearchResults>
       
     </Box>
   );
