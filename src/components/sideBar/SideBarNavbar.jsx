@@ -4,14 +4,16 @@ import { Avatar } from "@chakra-ui/react";
 import EditProfile from "./EditProfile.jsx";
 import { Logout } from "../../assets/Constants.jsx";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../stores/useAuthStore.js";
 function SideBarNavbar() {
+  const {user} = useAuthStore()
   const navigate = useNavigate();
   return (
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={1}>
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-          <p>Username</p>
+          <p>{user.username}</p>
         </Flex>
         <Flex gap={2} alignItems={"center"} mr={2}>
           <EditProfile></EditProfile>
