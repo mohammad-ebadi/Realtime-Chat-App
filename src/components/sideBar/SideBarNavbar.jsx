@@ -6,6 +6,7 @@ import { Logout } from "../../assets/Constants.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../stores/useAuthStore.js";
 function SideBarNavbar() {
+  
   const {user} = useAuthStore()
   const navigate = useNavigate();
   return (
