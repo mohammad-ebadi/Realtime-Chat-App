@@ -5,7 +5,7 @@ import RecentUsersChat from "./RecentUsersChat";
 function RecentUsers() {
   return (
     <>
-      <Text color={"gray.200"} textAlign={"center"}>Recent Chats</Text>
+      <Text color={"gray.500"} textAlign={"center"}>Recent Chats</Text>
       <Box bg={"purple.200"} w={"full"} maxH={"68vh"} overflow={"auto"}>
         <RecentUsersChat></RecentUsersChat>
         <RecentUsersChat></RecentUsersChat>
