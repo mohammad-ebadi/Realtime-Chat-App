@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
 function SearchResults({ username, profilePicURL }) {

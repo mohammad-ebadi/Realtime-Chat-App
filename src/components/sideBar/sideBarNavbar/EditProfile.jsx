@@ -17,10 +17,10 @@ import {
   useToast,
   Spinner,
 } from "@chakra-ui/react";
-import { Edit } from "../../assets/Constants";
-import { useAuthStore } from "../../stores/useAuthStore";
-import { supabase } from "../../configs/Supabase";
-import { firestore } from "../../configs/Firebase";
+import { Edit } from "../../../assets/Constants.jsx";
+import { useAuthStore } from "../../../stores/useAuthStore.js";
+import { supabase } from "../../../configs/Supabase.js";
+import { firestore } from "../../../configs/Firebase.js";
 import { doc, updateDoc } from "firebase/firestore";
 
 function EditProfile() {

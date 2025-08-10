@@ -1,8 +1,8 @@
 import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import SearchBar from "./SearchBar.jsx";
-import RecentUsers from "./RecentUsers.jsx";
-import SideBarNavbar from "./SideBarNavbar.jsx";
+import SearchBar from "./sideBarSearchBar/SearchBar.jsx";
+import RecentUsers from "./sideBarRecentUsers/RecentUsers.jsx";
+import SideBarNavbar from "./sideBarNavbar/SideBarNavbar.jsx";
 
 function SideBar() {
   return (
@@ -13,7 +13,9 @@ function SideBar() {
         <RecentUsers></RecentUsers>
       </VStack>
 
-      <Text textAlign={"center"} color={"gray.700"}>Built by Mohammad</Text>
+      <Text textAlign={"center"} color={"gray.700"}>
+        Built by Mohammad
+      </Text>
     </Box>
   );
 }
