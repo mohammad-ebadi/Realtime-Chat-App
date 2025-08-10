@@ -4,7 +4,7 @@ import { useAuthStore } from "../../stores/useAuthStore.js";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, firestore } from "../../configs/Firebase.js";
-import { doc, getDoc, setDoc, collection, query, where, getDocs, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import useAppToast from "../../hooks/useAppToast.js";
 
 function GoogleAuth({ signIn }) {
@@ -23,17 +23,10 @@ function GoogleAuth({ signIn }) {
         const userDocSnap = await getDoc(userDocRef);
 
         if (!userDocSnap.exists()) {
-          // Generate username from email and check for duplicates
+          // Generate username from email with timestamp to ensure uniqueness
           const usernameFromEmail = user.email.split("@")[0];
-          const usersRef = collection(firestore, "users");
-          const q = query(usersRef, where("username", "==", usernameFromEmail));
-          const querySnapshot = await getDocs(q);
-          
-          let finalUsername = usernameFromEmail;
-          if (!querySnapshot.empty) {
-            // Add random suffix if username already exists
-            finalUsername = `${usernameFromEmail}_${Math.random().toString(36).substr(2, 5)}`;
-          }
+          const timestamp = Date.now().toString(36);
+          const finalUsername = `${usernameFromEmail}_${timestamp}`;
 
           // Create new user document
           await setDoc(userDocRef, {
@@ -74,12 +67,29 @@ function GoogleAuth({ signIn }) {
         
       } catch (firestoreError) {
         console.error("Firestore error:", firestoreError);
-        toast.error("Failed to save user data. Please try again.");
+        // Even if Firestore fails, we can still set the user in local state
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          photoURL: user.photoURL,
+          username: user.email.split("@")[0],
+          profilePicURL: user.photoURL || "",
+        });
+        toast.warning("Signed in but profile data couldn't be saved. Please try again later.");
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       }
       
     } catch (error) {
       console.error("Authentication error:", error);
-      toast.error("Authentication failed. Please try again.");
+      if (error.code === 'auth/popup-closed-by-user') {
+        toast.warning("Sign-in was cancelled");
+      } else if (error.code === 'auth/popup-blocked') {
+        toast.error("Pop-up was blocked. Please allow pop-ups for this site.");
+      } else {
+        toast.error("Authentication failed. Please try again.");
+      }
     }
   };
 
