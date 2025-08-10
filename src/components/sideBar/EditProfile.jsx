@@ -97,7 +97,7 @@ function EditProfile() {
       }
 
       // مسیر فایل در باکت (ثابت = جایگزینی آسان)
-      const filePath =` ${user.uid}.jpg`;
+      const filePath =` ${user.uid}`.jpg;
 
       // اگر تصویر قبلی وجود دارد، حذفش کن
       if (user.profilePicURL) {
@@ -125,7 +125,7 @@ function EditProfile() {
       // آپدیت در Zustand
       setUser({ ...user, profilePicURL: newProfilePicURL });
 
-      
+
       onClose();
     } catch (error) {
       console.error("Error updating profile picture:", error);
