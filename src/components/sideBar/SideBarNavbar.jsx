@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar , AvatarBadge } from "@chakra-ui/react";
 import EditProfile from "./EditProfile.jsx";
 import { Logout } from "../../assets/Constants.jsx";
 import { useNavigate } from "react-router-dom";
