@@ -22,6 +22,7 @@ import { useAuthStore } from "../../stores/useAuthStore";
 import { supabase } from "../../configs/Supabase";
 import { firestore } from "../../configs/Firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import { useUsernameRoute } from "../../hooks/useUsernameRoute";
 
 function EditProfile() {
   const { user, setUser } = useAuthStore();
@@ -32,8 +33,8 @@ function EditProfile() {
   const [isUpdating, setIsUpdating] = useState(false);
   const fileInputRef = useRef(null);
   const toast = useToast();
+  const { updateUsernameRoute } = useUsernameRoute();
 
-  // Set initial username when modal opens
   const handleModalOpen = () => {
     setNewUsername(user?.username || "");
     onOpen();
@@ -42,7 +43,6 @@ function EditProfile() {
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Validate file type
       if (!file.type.startsWith('image/')) {
         toast({
           title: "Invalid file type",
@@ -54,7 +54,6 @@ function EditProfile() {
         return;
       }
       
-      // Validate file size (max 2MB)
       if (file.size > 2 * 1024 * 1024) {
         toast({
           title: "File too large",
@@ -94,6 +93,9 @@ function EditProfile() {
       
       const updatedUser = { ...user, username: newUsername.trim() };
       setUser(updatedUser);
+
+      // Update URL to reflect new username
+      updateUsernameRoute(newUsername.trim());
 
       toast({
         title: "Username updated",

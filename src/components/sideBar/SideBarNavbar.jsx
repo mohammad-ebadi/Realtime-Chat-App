@@ -5,9 +5,23 @@ import EditProfile from "./EditProfile.jsx";
 import {  Logout } from "../../assets/Constants.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../stores/useAuthStore.js";
+import { auth } from "../../configs/Firebase.js";
+import { signOut } from "firebase/auth";
+
 function SideBarNavbar() {
-  const { user } = useAuthStore();
+  const { user, clearUser } = useAuthStore();
   const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      clearUser();
+      navigate("/auth");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
@@ -19,9 +33,7 @@ function SideBarNavbar() {
         </Flex>
         <Flex gap={2} alignItems={"center"} mr={2}>
           <Box
-            onClick={() => {
-              navigate("/auth");
-            }}
+            onClick={handleLogout}
             cursor={"pointer"}
             _hover={{ bg: "transparent", transform: "scale(1.2)" }}
           >

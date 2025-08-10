@@ -14,13 +14,13 @@ import {
 import { auth, firestore } from "../../configs/Firebase.js";
 import useAppToast from "../../hooks/useAppToast.js";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../stores/useAuthStore.js";
 
 function SignUp() {
   const [hidePassword, setHidePassword] = useState(true);
   const navigate = useNavigate();
-
-  // Custom hook for toast
   const toast = useAppToast();
+  const { setUser } = useAuthStore();
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -62,23 +62,30 @@ function SignUp() {
           createdAt: serverTimestamp(),
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
-
-        // custom hook for toast
-        toast.success("Your Account Created Successfully");
+        
+        // Set user in store and navigate
+        setUser({
+          uid: newUser.user.uid,
+          email: inputs.email,
+          username: inputs.username,
+          profilePicURL: "",
+        });
+        
+        toast.success("Account created successfully!");
         setTimeout(() => {
-          navigate("/");
+          navigate(`/${inputs.username}`);
         }, 2000);
       }
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
-          toast.warning("This email is taken by someone else.");
+          toast.warning("This email is already registered.");
+          break;
+        case "auth/weak-password":
+          toast.warning("Password should be at least 6 characters.");
           break;
         case "auth/invalid-email":
           toast.warning("Your email is not valid.");
-          break;
-        case "auth/weak-password":
-          toast.warning("Your password must be at least 6 characters long.");
           break;
         default:
           toast.error("An error has occurred. Please try again.");
@@ -87,11 +94,7 @@ function SignUp() {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        handleSignUp(e);
-      }}
-    >
+    <form onSubmit={handleSignUp}>
       <VStack gap={5}>
         <Input
           variant={"flushed"}
@@ -103,20 +106,17 @@ function SignUp() {
             setInputs({ ...inputs, email: e.target.value });
           }}
           borderColor={"gray.400"}
-        ></Input>
-
+        />
         <Input
           variant={"flushed"}
           placeholder="Username..."
-          type="text"
           cursor={"pointer"}
           value={inputs.username}
           onChange={(e) => {
             setInputs({ ...inputs, username: e.target.value });
           }}
           borderColor={"gray.400"}
-        ></Input>
-
+        />
         <Flex gap={50}>
           <Input
             variant={"flushed"}
@@ -129,9 +129,8 @@ function SignUp() {
               setInputs({ ...inputs, password: e.target.value });
             }}
             borderColor={"gray.400"}
-          ></Input>
+          />
           <Button
-            type="button"
             onClick={() => {
               setHidePassword(!hidePassword);
             }}
