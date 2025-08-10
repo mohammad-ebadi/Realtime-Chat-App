@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Avatar , AvatarBadge } from "@chakra-ui/react";
 import EditProfile from "./EditProfile.jsx";
-import { Logout } from "../../assets/Constants.jsx";
+import { Edit, Logout } from "../../assets/Constants.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../stores/useAuthStore.js";
 function SideBarNavbar() {
@@ -12,9 +12,8 @@ function SideBarNavbar() {
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={1}>
-          {/* <Avatar name={user.username} src={user?.profilePicURL}/> */}
           <Avatar name={user.username} src={user?.profilePicURL}>
-            <AvatarBadge boxSize="1.25em" bg="green.500" />
+            <AvatarBadge boxSize="1.25em" bg="green.500" ><Edit></Edit></AvatarBadge>
           </Avatar>
           <p>{user?.username}</p>
         </Flex>
