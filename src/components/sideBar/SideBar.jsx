@@ -1,4 +1,4 @@
-import { Box, Flex, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import SearchBar from "./SearchBar.jsx";
 import RecentUsers from "./RecentUsers.jsx";
@@ -13,7 +13,7 @@ function SideBar() {
         <RecentUsers></RecentUsers>
       </VStack>
 
-      <p>Built by Mohammad</p>
+      <Text textAlign={"center"} color={"gray.500"}>Built by Mohammad</Text>
     </Box>
   );
 }
