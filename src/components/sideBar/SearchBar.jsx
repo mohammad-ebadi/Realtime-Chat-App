@@ -41,6 +41,10 @@ function SearchBar() {
       <Input
         placeholder="Search username..."
         value={searchTerm}
+        border={"none"}
+        borderRadius={0}
+        focusBorderColor="transparent"
+        _focus={{ _placeholder: { color: "blue.500" } }}
         onChange={handleSearch}
       />
       {foundUser && (
