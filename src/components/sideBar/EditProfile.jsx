@@ -40,8 +40,7 @@ function EditProfile() {
           <ModalBody>
             <Flex alignItems={"center"} gap={5} mb={5}>
               <Avatar
-                name="Dan Abrahmov"
-                src="https://bit.ly/dan-abramov"
+                name={user.username} src={user?.profilePicURL} 
                 size={"xl"}
               />
               <Input type="file" border={"none"} cursor={"pointer"}></Input>
