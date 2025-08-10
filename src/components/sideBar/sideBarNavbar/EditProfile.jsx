@@ -22,6 +22,7 @@ import { useAuthStore } from "../../../stores/useAuthStore.js";
 import { supabase } from "../../../configs/Supabase.js";
 import { firestore } from "../../../configs/Firebase.js";
 import { doc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function EditProfile() {
   const { user, setUser } = useAuthStore();
@@ -32,6 +33,7 @@ function EditProfile() {
   const [isUpdating, setIsUpdating] = useState(false);
   const fileInputRef = useRef(null);
   const toast = useToast();
+  const navigate = useNavigate();
 
   // Set initial username when modal opens
   const handleModalOpen = () => {
@@ -102,6 +104,9 @@ function EditProfile() {
         duration: 3000,
         isClosable: true,
       });
+
+      // Redirect to new username URL
+      navigate(`/${newUsername.trim()}`);
     } catch (error) {
       console.log(error);
       toast({
