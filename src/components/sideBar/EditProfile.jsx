@@ -125,6 +125,7 @@ function EditProfile() {
       // آپدیت در Zustand
       setUser({ ...user, profilePicURL: newProfilePicURL });
 
+      
       onClose();
     } catch (error) {
       console.error("Error updating profile picture:", error);
