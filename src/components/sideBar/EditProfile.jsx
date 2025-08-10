@@ -20,6 +20,8 @@ import {
 import { Edit } from "../../assets/Constants";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { supabase } from "../../configs/Supabase";
+import { firestore } from "../../configs/Firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 function EditProfile() {
   const { user, setUser } = useAuthStore();
@@ -44,11 +46,11 @@ function EditProfile() {
         return;
       }
       
-      // Validate file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
+      // Validate file size (max 2MB)
+      if (file.size > 2 * 1024 * 1024) {
         toast({
           title: "File too large",
-          description: "Please select an image smaller than 5MB",
+          description: "Please select an image smaller than 2MB",
           status: "error",
           duration: 3000,
           isClosable: true,
@@ -107,7 +109,18 @@ function EditProfile() {
         }
       }
 
-      // Update user profile with new picture URL
+      // Update user profile in Firestore with new picture URL
+      try {
+        const userDocRef = doc(firestore, "users", user.id);
+        await updateDoc(userDocRef, {
+          profilePicURL: publicUrl
+        });
+      } catch (firestoreError) {
+        console.error('Error updating Firestore:', firestoreError);
+        throw new Error('Failed to update profile in database');
+      }
+
+      // Update user profile in local state with new picture URL
       const updatedUser = {
         ...user,
         profilePicURL: publicUrl
