@@ -28,8 +28,16 @@ function EditProfile() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedFile, setSelectedFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [newUsername, setNewUsername] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
   const fileInputRef = useRef(null);
   const toast = useToast();
+
+  // Set initial username when modal opens
+  const handleModalOpen = () => {
+    setNewUsername(user?.username || "");
+    onOpen();
+  };
 
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
@@ -59,6 +67,72 @@ function EditProfile() {
       }
       
       setSelectedFile(file);
+    }
+  };
+
+  const updateUsername = async () => {
+    if (!newUsername.trim()) {
+      toast({
+        title: "Username required",
+        description: "Please enter a username",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    if (newUsername.trim() === user?.username) {
+      toast({
+        title: "No changes",
+        description: "Username is the same as current",
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    setIsUpdating(true);
+
+    try {
+      console.log('Updating username to:', newUsername.trim());
+      
+      // Update username in Firestore
+      const userDocRef = doc(firestore, "users", user.uid);
+      await updateDoc(userDocRef, {
+        username: newUsername.trim()
+      });
+      
+      console.log('Username updated in Firestore successfully');
+
+      // Update local state
+      const updatedUser = {
+        ...user,
+        username: newUsername.trim()
+      };
+      
+      setUser(updatedUser);
+
+      toast({
+        title: "Username updated",
+        description: "Your username has been successfully updated",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+
+    } catch (error) {
+      console.error('Error updating username:', error);
+      toast({
+        title: "Update failed",
+        description: error.message || "Failed to update username",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -191,17 +265,27 @@ function EditProfile() {
   };
 
   const handleSave = async () => {
-    if (selectedFile) {
-      await uploadProfilePicture();
+    try {
+      // Update username if changed
+      if (newUsername.trim() !== user?.username) {
+        await updateUsername();
+      }
+      
+      // Upload profile picture if selected
+      if (selectedFile) {
+        await uploadProfilePicture();
+      }
+      
+      onClose();
+    } catch (error) {
+      console.error('Error in handleSave:', error);
     }
-    // Add username update logic here if needed
-    onClose();
   };
 
   return (
     <>
       <Button
-        onClick={onOpen}
+        onClick={handleModalOpen}
         size={"xl"}
         _hover={{ bg: "transparent", transform: "scale(1.2)" }}
         bg={"none"}
@@ -236,7 +320,18 @@ function EditProfile() {
             )}
             <VStack align={"start"}>
               <Text fontSize={14}>Current Username : {user?.username}</Text>
-              <Input placeholder="Username..."></Input>
+              <Input 
+                placeholder="Username..." 
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+                borderColor={newUsername.trim() !== user?.username ? "blue.300" : "gray.300"}
+                _focus={{ borderColor: "blue.500" }}
+              />
+              {newUsername.trim() !== user?.username && newUsername.trim() && (
+                <Text fontSize={12} color="blue.500">
+                  New username: {newUsername.trim()}
+                </Text>
+              )}
             </VStack>
           </ModalBody>
           <ModalFooter>
@@ -246,11 +341,11 @@ function EditProfile() {
             <Button 
               colorScheme="blue" 
               onClick={handleSave}
-              isLoading={isUploading}
-              loadingText="Uploading..."
-              disabled={!selectedFile}
+              isLoading={isUploading || isUpdating}
+              loadingText={isUploading ? "Uploading..." : "Updating..."}
+              disabled={(!selectedFile && newUsername.trim() === user?.username)}
             >
-              {isUploading ? <Spinner size="sm" /> : "Save"}
+              {isUploading || isUpdating ? <Spinner size="sm" /> : "Save"}
             </Button>
           </ModalFooter>
         </ModalContent>
