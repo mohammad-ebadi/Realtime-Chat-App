@@ -4,7 +4,7 @@ import React from "react";
 function SearchResults({ username, profilePicURL }) {
   return (
     <>
-    <Text color={"gray.500"} textAlign={"center"}>Search Result</Text>
+    <Text color={"gray.500"} textAlign={"center"} h={5}>Search Result</Text>
     <Box borderBottom={"1px solid black"} cursor={"pointer"} bg={"orange.400"}>
       <Flex alignItems={"center"} gap={1}>
         <Flex alignItems={"center"} p={1}>
