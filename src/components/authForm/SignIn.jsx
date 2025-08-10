@@ -23,9 +23,7 @@ function SignIn() {
     try {
       await signInWithEmailAndPassword(auth, inputs.email, inputs.password);
       toast.success("Signed in successfully!");
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      // Navigation will be handled by App.jsx useEffect when user state is set
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":

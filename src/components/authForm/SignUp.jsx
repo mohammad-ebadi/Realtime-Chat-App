@@ -65,9 +65,7 @@ function SignUp() {
 
         // custom hook for toast
         toast.success("Your Account Created Successfully");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        // Navigation will be handled by App.jsx useEffect when user state is set
       }
     } catch (error) {
       switch (error.code) {

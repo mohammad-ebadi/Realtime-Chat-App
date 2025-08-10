@@ -60,10 +60,7 @@ function GoogleAuth({ signIn }) {
           toast.success("Welcome back!");
         }
 
-        // Navigate after successful authentication
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
+        // Navigation will be handled by App.jsx useEffect when user state is set
         
       } catch (firestoreError) {
         console.error("Firestore error:", firestoreError);
@@ -77,9 +74,7 @@ function GoogleAuth({ signIn }) {
         });
         
         toast.warning("Signed in but profile data couldn't be saved. Please try again later.");
-        setTimeout(() => {
-          navigate("/");
-        }, 1500);
+        // Navigation will be handled by App.jsx useEffect when user state is set
       }
       
     } catch (error) {
