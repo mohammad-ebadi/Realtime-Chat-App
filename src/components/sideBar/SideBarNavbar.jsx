@@ -6,14 +6,16 @@ import { Logout } from "../../assets/Constants.jsx";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../stores/useAuthStore.js";
 function SideBarNavbar() {
-  
-  const {user} = useAuthStore()
+  const { user } = useAuthStore();
   const navigate = useNavigate();
   return (
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={1}>
-          <Avatar name={user.username} src={user?.profilePicURL}> <AvatarBadge boxSize='1.25em' bg='green.500' /></Avatar>
+          {/* <Avatar name={user.username} src={user?.profilePicURL}/> */}
+          <Avatar name={user.username} src={user?.profilePicURL}>
+            <AvatarBadge boxSize="1.25em" bg="green.500" />
+          </Avatar>
           <p>{user?.username}</p>
         </Flex>
         <Flex gap={2} alignItems={"center"} mr={2}>
