@@ -13,7 +13,7 @@ function SideBar() {
         <RecentUsers></RecentUsers>
       </VStack>
 
-      <Text textAlign={"center"} color={"gray.500"}>Built by Mohammad</Text>
+      <Text textAlign={"center"} color={"gray.700"}>Built by Mohammad</Text>
     </Box>
   );
 }
