@@ -1,6 +1,5 @@
 import { Box, Flex, VStack } from '@chakra-ui/react'
 import React from 'react'
-import RecentUsersChat from '../sideBar/RecentUsersChat'
 import ChatHistory from './ChatHistory'
 
 function ChatBarWindow() {
