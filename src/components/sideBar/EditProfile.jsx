@@ -74,12 +74,29 @@ function EditProfile() {
       return;
     }
 
+    // Check if user and user.uid exist
+    if (!user || !user.uid) {
+      toast({
+        title: "User not found",
+        description: "Please make sure you are logged in",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
     setIsUploading(true);
     
     try {
+      console.log('Starting upload for user:', user.uid);
+      console.log('Selected file:', selectedFile.name, 'Size:', selectedFile.size);
+      
       // Generate unique filename with timestamp
       const fileExt = selectedFile.name.split('.').pop();
-      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+      const fileName = `${user.uid}-${Date.now()}.${fileExt}`;
+      
+      console.log('Generated filename:', fileName);
       
       // Upload new image to Supabase storage
       const { data: uploadData, error: uploadError } = await supabase.storage
@@ -87,22 +104,32 @@ function EditProfile() {
         .upload(fileName, selectedFile);
 
       if (uploadError) {
-        throw new Error(uploadError.message);
+        console.error('Supabase upload error:', uploadError);
+        if (uploadError.message.includes('bucket') || uploadError.message.includes('not found')) {
+          throw new Error('Storage bucket "user-profile" not found. Please contact support.');
+        }
+        throw new Error(`Upload failed: ${uploadError.message}`);
       }
+
+      console.log('Upload successful:', uploadData);
 
       // Get public URL for the uploaded image
       const { data: { publicUrl } } = supabase.storage
         .from('user-profile')
         .getPublicUrl(fileName);
 
+      console.log('Public URL generated:', publicUrl);
+
       // If user has an existing profile picture, delete it
       if (user.profilePicURL) {
         try {
           // Extract filename from existing URL
           const existingFileName = user.profilePicURL.split('/').pop().split('?')[0];
+          console.log('Attempting to delete old file:', existingFileName);
           await supabase.storage
             .from('user-profile')
             .remove([existingFileName]);
+          console.log('Old file deleted successfully');
         } catch (deleteError) {
           console.warn('Failed to delete old profile picture:', deleteError);
           // Continue even if deletion fails
@@ -111,10 +138,12 @@ function EditProfile() {
 
       // Update user profile in Firestore with new picture URL
       try {
-        const userDocRef = doc(firestore, "users", user.id);
+        console.log('Updating Firestore with new profilePicURL');
+        const userDocRef = doc(firestore, "users", user.uid);
         await updateDoc(userDocRef, {
           profilePicURL: publicUrl
         });
+        console.log('Firestore updated successfully');
       } catch (firestoreError) {
         console.error('Error updating Firestore:', firestoreError);
         throw new Error('Failed to update profile in database');
@@ -144,6 +173,11 @@ function EditProfile() {
 
     } catch (error) {
       console.error('Error uploading profile picture:', error);
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        user: user ? { uid: user.uid, username: user.username } : 'No user'
+      });
       toast({
         title: "Upload failed",
         description: error.message || "Failed to upload profile picture",
