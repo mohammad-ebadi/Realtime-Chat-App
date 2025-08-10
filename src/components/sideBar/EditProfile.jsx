@@ -82,36 +82,17 @@ function EditProfile() {
       return;
     }
 
-    if (newUsername.trim() === user?.username) {
-      toast({
-        title: "No changes",
-        description: "Username is the same as current",
-        status: "info",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
+    if (newUsername.trim() === user?.username) return;
 
     setIsUpdating(true);
 
     try {
-      console.log('Updating username to:', newUsername.trim());
-      
-      // Update username in Firestore
       const userDocRef = doc(firestore, "users", user.uid);
       await updateDoc(userDocRef, {
         username: newUsername.trim()
       });
       
-      console.log('Username updated in Firestore successfully');
-
-      // Update local state
-      const updatedUser = {
-        ...user,
-        username: newUsername.trim()
-      };
-      
+      const updatedUser = { ...user, username: newUsername.trim() };
       setUser(updatedUser);
 
       toast({
@@ -123,10 +104,9 @@ function EditProfile() {
       });
 
     } catch (error) {
-      console.error('Error updating username:', error);
       toast({
         title: "Update failed",
-        description: error.message || "Failed to update username",
+        description: "Failed to update username",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -137,19 +117,9 @@ function EditProfile() {
   };
 
   const uploadProfilePicture = async () => {
-    if (!selectedFile) {
-      toast({
-        title: "No file selected",
-        description: "Please select a profile picture first",
-        status: "warning",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
+    if (!selectedFile) return;
 
-    // Check if user and user.uid exist
-    if (!user || !user.uid) {
+    if (!user?.uid) {
       toast({
         title: "User not found",
         description: "Please make sure you are logged in",
@@ -163,75 +133,40 @@ function EditProfile() {
     setIsUploading(true);
     
     try {
-      console.log('Starting upload for user:', user.uid);
-      console.log('Selected file:', selectedFile.name, 'Size:', selectedFile.size);
-      
-      // Generate unique filename with timestamp
       const fileExt = selectedFile.name.split('.').pop();
       const fileName = `${user.uid}-${Date.now()}.${fileExt}`;
       
-      console.log('Generated filename:', fileName);
-      
-      // Upload new image to Supabase storage
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('user-profile')
         .upload(fileName, selectedFile);
 
       if (uploadError) {
-        console.error('Supabase upload error:', uploadError);
-        if (uploadError.message.includes('bucket') || uploadError.message.includes('not found')) {
-          throw new Error('Storage bucket "user-profile" not found. Please contact support.');
-        }
-        throw new Error(`Upload failed: ${uploadError.message}`);
+        throw new Error(uploadError.message);
       }
 
-      console.log('Upload successful:', uploadData);
-
-      // Get public URL for the uploaded image
       const { data: { publicUrl } } = supabase.storage
         .from('user-profile')
         .getPublicUrl(fileName);
 
-      console.log('Public URL generated:', publicUrl);
-
-      // If user has an existing profile picture, delete it
       if (user.profilePicURL) {
         try {
-          // Extract filename from existing URL
           const existingFileName = user.profilePicURL.split('/').pop().split('?')[0];
-          console.log('Attempting to delete old file:', existingFileName);
           await supabase.storage
             .from('user-profile')
             .remove([existingFileName]);
-          console.log('Old file deleted successfully');
         } catch (deleteError) {
-          console.warn('Failed to delete old profile picture:', deleteError);
           // Continue even if deletion fails
         }
       }
 
-      // Update user profile in Firestore with new picture URL
-      try {
-        console.log('Updating Firestore with new profilePicURL');
-        const userDocRef = doc(firestore, "users", user.uid);
-        await updateDoc(userDocRef, {
-          profilePicURL: publicUrl
-        });
-        console.log('Firestore updated successfully');
-      } catch (firestoreError) {
-        console.error('Error updating Firestore:', firestoreError);
-        throw new Error('Failed to update profile in database');
-      }
-
-      // Update user profile in local state with new picture URL
-      const updatedUser = {
-        ...user,
+      const userDocRef = doc(firestore, "users", user.uid);
+      await updateDoc(userDocRef, {
         profilePicURL: publicUrl
-      };
-      
+      });
+
+      const updatedUser = { ...user, profilePicURL: publicUrl };
       setUser(updatedUser);
       
-      // Reset form
       setSelectedFile(null);
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
@@ -246,15 +181,9 @@ function EditProfile() {
       });
 
     } catch (error) {
-      console.error('Error uploading profile picture:', error);
-      console.error('Error details:', {
-        message: error.message,
-        stack: error.stack,
-        user: user ? { uid: user.uid, username: user.username } : 'No user'
-      });
       toast({
         title: "Upload failed",
-        description: error.message || "Failed to upload profile picture",
+        description: "Failed to upload profile picture",
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -266,19 +195,17 @@ function EditProfile() {
 
   const handleSave = async () => {
     try {
-      // Update username if changed
       if (newUsername.trim() !== user?.username) {
         await updateUsername();
       }
       
-      // Upload profile picture if selected
       if (selectedFile) {
         await uploadProfilePicture();
       }
       
       onClose();
     } catch (error) {
-      console.error('Error in handleSave:', error);
+      // Error handling is done in individual functions
     }
   };
 
