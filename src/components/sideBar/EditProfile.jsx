@@ -51,10 +51,10 @@ function EditProfile() {
             </VStack>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button  mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button>Save</Button>
+            <Button colorScheme="blue">Save</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
