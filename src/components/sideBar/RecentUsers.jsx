@@ -4,23 +4,25 @@ import RecentUsersChat from "./RecentUsersChat";
 
 function RecentUsers() {
   return (
-    <Box bg={"purple.200"} w={"full"} maxH={"68vh"} overflow={"auto"}>
-      <Text color={"gray.200"}>Recent Chats</Text>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-      <RecentUsersChat></RecentUsersChat>
-    </Box>
+    <>
+      <Text color={"gray.200"} textAlign={"center"}>Recent Chats</Text>
+      <Box bg={"purple.200"} w={"full"} maxH={"68vh"} overflow={"auto"}>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+        <RecentUsersChat></RecentUsersChat>
+      </Box>
+    </>
   );
 }
 
