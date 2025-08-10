@@ -4,7 +4,6 @@ import React from "react";
 function SearchResults({ username, profilePicURL }) {
   return (
     <>
-    {username ? (<Text color={"gray.500"} textAlign={"center"}>Search Result</Text>) : <Text>User Not Found</Text>}
     
     <Box borderBottom={"1px solid black"} cursor={"pointer"} bg={"orange.400"}>
       <Flex alignItems={"center"} gap={1}>
