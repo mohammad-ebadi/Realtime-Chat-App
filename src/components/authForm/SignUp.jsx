@@ -66,7 +66,7 @@ function SignUp() {
         // custom hook for toast
         toast.success("Your Account Created Successfully");
         setTimeout(() => {
-          navigate(`/${inputs.username}`);
+          navigate("/");
         }, 2000);
       }
     } catch (error) {

@@ -62,11 +62,7 @@ function GoogleAuth({ signIn }) {
 
         // Navigate after successful authentication
         setTimeout(() => {
-          if (username) {
-            navigate(`/${username}`);
-          } else {
-            navigate("/");
-          }
+          navigate("/");
         }, 1500);
         
       } catch (firestoreError) {
@@ -82,11 +78,7 @@ function GoogleAuth({ signIn }) {
         
         toast.warning("Signed in but profile data couldn't be saved. Please try again later.");
         setTimeout(() => {
-          if (username) {
-            navigate(`/${username}`);
-          } else {
-            navigate("/");
-          }
+          navigate("/");
         }, 1500);
       }
       
