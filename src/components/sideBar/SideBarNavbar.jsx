@@ -11,7 +11,7 @@ function SideBarNavbar() {
   return (
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
-        <Flex alignItems={"center"} gap={1} p={1}>
+        <Flex alignItems={"center"} gap={1} p={2}>
           <Avatar name={user.username} src={user?.profilePicURL}>
             <AvatarBadge boxSize="1em" bg={"white"} cursor={"pointer"}><EditProfile></EditProfile></AvatarBadge>
           </Avatar>
