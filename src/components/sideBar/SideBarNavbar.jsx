@@ -13,7 +13,7 @@ function SideBarNavbar() {
     <Box bg={"pink.200"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={1}>
-          <Avatar name="Dan Abrahmov" src={user?.profilePicURL} />
+          <Avatar name={user.username} src={user?.profilePicURL} />
           <p>{user?.username}</p>
         </Flex>
         <Flex gap={2} alignItems={"center"} mr={2}>
