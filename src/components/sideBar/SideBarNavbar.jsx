@@ -13,7 +13,7 @@ function SideBarNavbar() {
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={1}>
           <Avatar name={user.username} src={user?.profilePicURL}>
-            <AvatarBadge boxSize="1.5em" bg={"white"} cursor={"pointer"}><EditProfile></EditProfile></AvatarBadge>
+            <AvatarBadge boxSize="1em" bg={"white"} cursor={"pointer"}><EditProfile></EditProfile></AvatarBadge>
           </Avatar>
           <p>{user?.username}</p>
         </Flex>
