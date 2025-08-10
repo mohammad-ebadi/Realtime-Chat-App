@@ -43,7 +43,7 @@ function EditProfile() {
     const file = event.target.files[0];
     if (file) {
       // Validate file type
-      if (!file.type.startsWith('image/')) {
+      if (!file.type.startsWith("image/")) {
         toast({
           title: "Invalid file type",
           description: "Please select an image file",
@@ -53,7 +53,7 @@ function EditProfile() {
         });
         return;
       }
-      
+
       // Validate file size (max 2MB)
       if (file.size > 2 * 1024 * 1024) {
         toast({
@@ -65,7 +65,7 @@ function EditProfile() {
         });
         return;
       }
-      
+
       setSelectedFile(file);
     }
   };
@@ -89,9 +89,9 @@ function EditProfile() {
     try {
       const userDocRef = doc(firestore, "users", user.uid);
       await updateDoc(userDocRef, {
-        username: newUsername.trim()
+        username: newUsername.trim(),
       });
-      
+
       const updatedUser = { ...user, username: newUsername.trim() };
       setUser(updatedUser);
 
@@ -102,9 +102,8 @@ function EditProfile() {
         duration: 3000,
         isClosable: true,
       });
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast({
         title: "Update failed",
         description: "Failed to update username",
@@ -132,46 +131,49 @@ function EditProfile() {
     }
 
     setIsUploading(true);
-    
+
     try {
-      const fileExt = selectedFile.name.split('.').pop();
+      const fileExt = selectedFile.name.split(".").pop();
       const fileName = `${user.uid}-${Date.now()}.${fileExt}`;
-      
+
       const { error: uploadError } = await supabase.storage
-        .from('user-profile')
+        .from("user-profile")
         .upload(fileName, selectedFile);
 
       if (uploadError) {
         throw new Error(uploadError.message);
       }
 
-      const { data: { publicUrl } } = supabase.storage
-        .from('user-profile')
-        .getPublicUrl(fileName);
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("user-profile").getPublicUrl(fileName);
 
       if (user.profilePicURL) {
         try {
-          const existingFileName = user.profilePicURL.split('/').pop().split('?')[0];
+          const existingFileName = user.profilePicURL
+            .split("/")
+            .pop()
+            .split("?")[0];
           await supabase.storage
-            .from('user-profile')
+            .from("user-profile")
             .remove([existingFileName]);
         } catch (deleteError) {
-          console.log(deleteError)
+          console.log(deleteError);
           // Continue even if deletion fails
         }
       }
 
       const userDocRef = doc(firestore, "users", user.uid);
       await updateDoc(userDocRef, {
-        profilePicURL: publicUrl
+        profilePicURL: publicUrl,
       });
 
       const updatedUser = { ...user, profilePicURL: publicUrl };
       setUser(updatedUser);
-      
+
       setSelectedFile(null);
       if (fileInputRef.current) {
-        fileInputRef.current.value = '';
+        fileInputRef.current.value = "";
       }
 
       toast({
@@ -181,9 +183,8 @@ function EditProfile() {
         duration: 3000,
         isClosable: true,
       });
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast({
         title: "Upload failed",
         description: "Failed to upload profile picture",
@@ -201,14 +202,14 @@ function EditProfile() {
       if (newUsername.trim() !== user?.username) {
         await updateUsername();
       }
-      
+
       if (selectedFile) {
         await uploadProfilePicture();
       }
-      
+
       onClose();
     } catch (error) {
-      console.log(error)
+      console.log(error);
       // Error handling is done in individual functions
     }
   };
@@ -231,14 +232,14 @@ function EditProfile() {
           <ModalBody>
             <Flex alignItems={"center"} gap={5} mb={5}>
               <Avatar
-                name={user?.username} 
-                src={user?.profilePicURL} 
+                name={user?.username}
+                src={user?.profilePicURL}
                 size={"xl"}
               />
-              <Input 
+              <Input
                 ref={fileInputRef}
-                type="file" 
-                border={"none"} 
+                type="file"
+                border={"none"}
                 cursor={"pointer"}
                 accept="image/*"
                 onChange={handleFileSelect}
@@ -251,11 +252,15 @@ function EditProfile() {
             )}
             <VStack align={"start"}>
               <Text fontSize={14}>Current Username : {user?.username}</Text>
-              <Input 
-                placeholder="Username..." 
+              <Input
+                placeholder="Username..."
                 value={newUsername}
                 onChange={(e) => setNewUsername(e.target.value)}
-                borderColor={newUsername.trim() !== user?.username ? "blue.300" : "gray.300"}
+                borderColor={
+                  newUsername.trim() !== user?.username
+                    ? "blue.300"
+                    : "gray.300"
+                }
                 _focus={{ borderColor: "blue.500" }}
               />
               {newUsername.trim() !== user?.username && newUsername.trim() && (
@@ -269,12 +274,12 @@ function EditProfile() {
             <Button mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button 
-              colorScheme="blue" 
+            <Button
+              colorScheme="blue"
               onClick={handleSave}
               isLoading={isUploading || isUpdating}
               loadingText={isUploading ? "Uploading..." : "Updating..."}
-              disabled={(!selectedFile && newUsername.trim() === user?.username)}
+              disabled={!selectedFile && newUsername.trim() === user?.username}
             >
               {isUploading || isUpdating ? <Spinner size="sm" /> : "Save"}
             </Button>
@@ -286,6 +291,3 @@ function EditProfile() {
 }
 
 export default EditProfile;
-
-
-
