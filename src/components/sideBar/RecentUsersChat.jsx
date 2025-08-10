@@ -2,8 +2,11 @@ import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
 function RecentUsersChat() {
+  const handleOpenChat = ()=>{
+    
+  }
   return (
-    <Box borderBottom={"1px solid black"} cursor={"pointer"} bg={"gray.100"}>
+    <Box borderBottom={"1px solid black"} cursor={"pointer"} bg={"gray.100"} onClick={handleOpenChat}>
       <Flex alignItems={"center"} gap={1}>
         <Flex alignItems={"center"} p={1}>
           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />

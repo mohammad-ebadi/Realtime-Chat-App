@@ -104,6 +104,7 @@ function EditProfile() {
       });
 
     } catch (error) {
+      console.log(error)
       toast({
         title: "Update failed",
         description: "Failed to update username",
@@ -155,6 +156,7 @@ function EditProfile() {
             .from('user-profile')
             .remove([existingFileName]);
         } catch (deleteError) {
+          console.log(deleteError)
           // Continue even if deletion fails
         }
       }
@@ -181,6 +183,7 @@ function EditProfile() {
       });
 
     } catch (error) {
+      console.log(error)
       toast({
         title: "Upload failed",
         description: "Failed to upload profile picture",
@@ -205,6 +208,7 @@ function EditProfile() {
       
       onClose();
     } catch (error) {
+      console.log(error)
       // Error handling is done in individual functions
     }
   };
