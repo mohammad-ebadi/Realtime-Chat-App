@@ -18,7 +18,7 @@ function SearchResults({ username, profilePicURL }) {
 
           <VStack align={"start"}>
             <Text fontSize={"15px"}>{username}</Text>
-            <Text fontSize={"12px"}>Hey whats up dud ? How are you doing?</Text>
+            {/* <Text fontSize={"12px"}>Hey whats up dud ? How are you doing?</Text> */}
           </VStack>
         </Flex>
       </Box>

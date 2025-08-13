@@ -37,6 +37,7 @@ function SearchBar() {
   };
 
   return (
+    <>
     <Flex direction="column" gap={3} bg={"#112D4E"}>
       <Input
         placeholder="Search username..."
@@ -45,6 +46,7 @@ function SearchBar() {
         borderRadius={0}
         focusBorderColor="transparent"
         _focus={{ _placeholder: { color: "white" } }}
+        color={"white"}
         onChange={handleSearch}
       />
       {foundUser && (
@@ -54,6 +56,9 @@ function SearchBar() {
         />
       )}
     </Flex>
+    <hr />
+    </>
+    
   );
 }
 
