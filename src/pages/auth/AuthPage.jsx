@@ -4,7 +4,7 @@ import AuthForm from "../../components/authForm/AuthForm";
 
 function AuthPage() {
   return (
-    <Flex justifyContent={"center"} alignItems={"center"} h={"100vh"} bg={"#F9F7F7"}>
+    <Flex justifyContent={"center"} alignItems={"center"} h={"100vh"} bg={"#3F72AF"}>
       <AuthForm></AuthForm>
     </Flex>
   );
