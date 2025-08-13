@@ -6,7 +6,7 @@ import SideBarNavbar from "./sideBarNavbar/SideBarNavbar.jsx";
 
 function SideBar() {
   return (
-    <Box bg={"112D4E"} w={"30vw"}>
+    <Box bg={"#112D4E"} w={"30vw"}>
       <VStack gap={0}>
         <SideBarNavbar></SideBarNavbar>
         <SearchBar></SearchBar>
