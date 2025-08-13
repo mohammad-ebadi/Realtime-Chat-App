@@ -104,7 +104,7 @@ function GoogleAuth({ signIn }) {
       borderRadius={5}
       p={2}
       bg={"#F9F7F7"}
-      _hover={{ bg: "#DBE2EF", color: "white" }}
+      _hover={{ bg: "#112D4E", color: "white" }}
       transition={"0.5s ease"}
       onClick={handleGoogleAuth}
     >
