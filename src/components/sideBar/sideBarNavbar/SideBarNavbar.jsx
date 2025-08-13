@@ -30,7 +30,7 @@ function SideBarNavbar() {
                 navigate("/auth");
               }}
               cursor={"pointer"}
-              _hover={{ bg: "transparent", transform: "scale(1.2)" }}
+              _hover={{ bg: "transparent", transform: "scale(1.2)" ,transition:"0.3s"}}
             >
               <Logout></Logout>
             </Box>

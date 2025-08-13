@@ -40,7 +40,7 @@ function SearchBar() {
     <>
       <Flex direction="column" gap={3} bg={"#112D4E"}>
         <Input
-          placeholder="Search username 🔍..."
+          placeholder="Search username 🔍"
           value={searchTerm}
           border={"none"}
           borderRadius={0}
