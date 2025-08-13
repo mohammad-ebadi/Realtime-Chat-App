@@ -9,29 +9,36 @@ function SideBarNavbar() {
   const { user } = useAuthStore();
   const navigate = useNavigate();
   return (
-    <Box bg={"#112D4E"} w={"full"} maxH={"73vh"} overflow={"auto"}>
-      <Flex alignItems={"center"} justifyContent={"space-between"}>
-        <Flex alignItems={"center"} gap={1} p={2}>
-          <Avatar name={user.username} src={user?.profilePicURL} border={"1px solid white"}>
-            <AvatarBadge boxSize="1em" bg={"white"} cursor={"pointer"}>
-              <EditProfile></EditProfile>
-            </AvatarBadge>
-          </Avatar>
-          <Text color="white">{user?.username}</Text>
+    <>
+      <Box bg={"#112D4E"} w={"full"} maxH={"73vh"} overflow={"auto"}>
+        <Flex alignItems={"center"} justifyContent={"space-between"}>
+          <Flex alignItems={"center"} gap={1} p={2}>
+            <Avatar
+              name={user.username}
+              src={user?.profilePicURL}
+              border={"1px solid white"}
+            >
+              <AvatarBadge boxSize="1em" bg={"white"} cursor={"pointer"}>
+                <EditProfile></EditProfile>
+              </AvatarBadge>
+            </Avatar>
+            <Text color="white">{user?.username}</Text>
+          </Flex>
+          <Flex gap={2} alignItems={"center"} mr={2}>
+            <Box
+              onClick={() => {
+                navigate("/auth");
+              }}
+              cursor={"pointer"}
+              _hover={{ bg: "transparent", transform: "scale(1.2)" }}
+            >
+              <Logout></Logout>
+            </Box>
+          </Flex>
         </Flex>
-        <Flex gap={2} alignItems={"center"} mr={2}>
-          <Box
-            onClick={() => {
-              navigate("/auth");
-            }}
-            cursor={"pointer"}
-            _hover={{ bg: "transparent", transform: "scale(1.2)" }}
-          >
-            <Logout></Logout>
-          </Box>
-        </Flex>
-      </Flex>
-    </Box>
+      </Box>
+      <hr />
+    </>
   );
 }
 

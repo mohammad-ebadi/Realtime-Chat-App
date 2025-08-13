@@ -8,7 +8,7 @@ function RecentUsers() {
       <Text color={"gray.500"} textAlign={"center"}>
         Recent Chats
       </Text>
-      <Box  w={"full"} maxH={"50vh"} overflow={"auto"}>
+      <Box  w={"full"} maxH={"55vh"} overflow={"auto"}>
         <RecentUsersChat></RecentUsersChat>
         <RecentUsersChat></RecentUsersChat>
         <RecentUsersChat></RecentUsersChat>
