@@ -14,10 +14,17 @@ function SideBar() {
         <RecentUsers></RecentUsers>
       </VStack>
       <Flex gap={3} mt={5} justifyContent={"center"} alignItems={"center"}>
+        <Link
+          href="https://github.com/mohammad-ebadi"
+          cursor={"pointer"}
+          target="_blank"
+        >
+          <Github></Github>
+        </Link>
+
         <Text textAlign={"center"} color={"white"} fontSize={"14px"}>
-          Built by Mohammad Ebadi
+          © 2025 built by Mohammad Ebadi.
         </Text>
-        <Link href="https://github.com/mohammad-ebadi" cursor={"pointer"} target="_blank"><Github></Github></Link>
       </Flex>
     </Box>
   );
