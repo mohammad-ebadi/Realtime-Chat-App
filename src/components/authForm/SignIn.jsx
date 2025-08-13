@@ -92,7 +92,8 @@ function SignIn() {
 
         <Button
           bg={"blue.300"}
-          color={"#3F72AF"}
+          color={"white"}
+          backgroundColor={"#3F72AF"}
           _hover={{ bg: "#112D4E" }}
           type="submit"
         >
