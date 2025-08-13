@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import { Avatar, AvatarBadge } from "@chakra-ui/react";
 import EditProfile from "./EditProfile.jsx";
@@ -17,7 +17,7 @@ function SideBarNavbar() {
               <EditProfile></EditProfile>
             </AvatarBadge>
           </Avatar>
-          <p color="white">{user?.username}</p>
+          <Text color="white">{user?.username}</Text>
         </Flex>
         <Flex gap={2} alignItems={"center"} mr={2}>
           <Box
