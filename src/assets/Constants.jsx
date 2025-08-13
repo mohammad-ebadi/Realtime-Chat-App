@@ -27,3 +27,6 @@ export const Edit = () => (
   <Image src="/Edit.svg"></Image>
 );
 
+export const Github = () => (
+  <Image src="/Github.svg"></Image>
+);
