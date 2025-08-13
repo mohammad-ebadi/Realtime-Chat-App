@@ -17,7 +17,7 @@ function SideBar() {
         <Text textAlign={"center"} color={"white"}>
           Built by Mohammad Ebadi
         </Text>
-        <Link href="https://github.com/mohammad-ebadi" cursor={"pointer"}><Github></Github></Link>
+        <Link href="https://github.com/mohammad-ebadi" cursor={"pointer"} target="_blank"><Github></Github></Link>
       </Flex>
     </Box>
   );
