@@ -19,7 +19,7 @@ function AuthForm() {
 
   return (
     <Container
-      boxShadow={"0px 0px 20px #DBE2EF"}
+      boxShadow={"0px 0px 20px #3F72AF"}
       borderRadius={10}
       maxW={"360px"}
       justifyContent={"center"}
