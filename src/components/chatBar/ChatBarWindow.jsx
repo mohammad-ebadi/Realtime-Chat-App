@@ -4,7 +4,7 @@ import ChatHistory from './ChatHistory'
 
 function ChatBarWindow() {
   return (
-    <Box bg={"yellow.300"} w={"full"} h={"82vh"} overflow={"auto"}>
+    <Box bg={"#DBE2EF"} w={"full"} h={"82vh"} overflow={"auto"}>
    
       <ChatHistory></ChatHistory>
     </Box>
