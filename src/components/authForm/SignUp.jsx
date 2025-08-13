@@ -147,9 +147,9 @@ function SignUp() {
         </Flex>
 
         <Button
-          bg={"blue.300"}
           color={"white"}
-          _hover={{ bg: "blue.600" }}
+          bg={"#3F72AF"}
+          _hover={{ bg: "#112D4E" }}
           type="submit"
         >
           Sign Up

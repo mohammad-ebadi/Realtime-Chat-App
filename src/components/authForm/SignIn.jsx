@@ -91,9 +91,8 @@ function SignIn() {
         </Flex>
 
         <Button
-          bg={"blue.300"}
           color={"white"}
-          backgroundColor={"#3F72AF"}
+          bg={"#3F72AF"}
           _hover={{ bg: "#112D4E" }}
           type="submit"
         >
