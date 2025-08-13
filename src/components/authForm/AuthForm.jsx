@@ -27,11 +27,11 @@ function AuthForm() {
       textAlign={"center"}
       p={10}
       mb={10}
-      bg={"rgba(237,242,247 , 0.8)"}
+      bg={"#DBE2EF"}
     >
       <Flex justifyContent={"center"} alignItems={"center"} gap={2}>
         <Logo></Logo>
-        <Text fontSize={20} fontWeight={"bold"} textShadow={"0px 1px 1px black"}>
+        <Text fontSize={20} fontWeight={"bold"} textShadow={"0px 1px 1px #112D4E"} color={"#112D4E"}>
           Chat App
         </Text>
       </Flex>
@@ -44,9 +44,9 @@ function AuthForm() {
         gap={1}
         w={"full"}
       >
-        <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
-        <Text>Or</Text>
-        <Box flex={2} h={"1px"} bg={"gray.400"}></Box>
+        <Box flex={2} h={"1px"} bg={"#112D4E"}></Box>
+        <Text color={"#112D4E"}>Or</Text>
+        <Box flex={2} h={"1px"} bg={"#112D4E"}></Box>
       </Flex>
 
       <GoogleAuth signIn={signIn}></GoogleAuth>
@@ -56,11 +56,11 @@ function AuthForm() {
         <Text
           cursor={"pointer"}
           textDecoration={"underline"}
-          color={"blue.400"}
+          color={"#3F72AF"}
           onClick={() => {
             setSignIn(!signIn);
           }}
-          _hover={{ color: "blue.700" ,transform: "scale(1.1)"}}
+          _hover={{ color: "#112D4E" ,transform: "scale(1.1)"}}
           transition={"0.3s ease"}
         >
           {signIn ? "Sign Up" : "Sign In"}
