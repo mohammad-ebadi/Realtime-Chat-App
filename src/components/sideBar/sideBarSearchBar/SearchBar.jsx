@@ -44,7 +44,7 @@ function SearchBar() {
         border={"none"}
         borderRadius={0}
         focusBorderColor="transparent"
-        _focus={{ _placeholder: { color: "blue.500" } }}
+        _focus={{ _placeholder: { color: "white" } }}
         onChange={handleSearch}
       />
       {foundUser && (
