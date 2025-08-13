@@ -38,27 +38,25 @@ function SearchBar() {
 
   return (
     <>
-    <Flex direction="column" gap={3} bg={"#112D4E"}>
-      <Input
-        placeholder="Search username..."
-        value={searchTerm}
-        border={"none"}
-        borderRadius={0}
-        focusBorderColor="transparent"
-        _focus={{ _placeholder: { color: "white" } }}
-        color={"white"}
-        onChange={handleSearch}
-      />
-      {foundUser && (
-        <SearchResult
-          username={foundUser.username}
-          profilePicURL={foundUser.profilePicURL}
+      <Flex direction="column" gap={3} bg={"#112D4E"}>
+        <Input
+          placeholder="Search username..."
+          value={searchTerm}
+          border={"none"}
+          borderRadius={0}
+          focusBorderColor="transparent"
+          _focus={{ _placeholder: { color: "white" } }}
+          color={"white"}
+          onChange={handleSearch}
         />
-      )}
-    </Flex>
-    <hr />
+        {foundUser && (
+          <SearchResult
+            username={foundUser.username}
+            profilePicURL={foundUser.profilePicURL}
+          />
+        )}
+      </Flex>
     </>
-    
   );
 }
 

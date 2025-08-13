@@ -6,10 +6,11 @@ function SearchResults({ username, profilePicURL }) {
   return (
     <>
       <Box
-        borderBottom={"1px solid black"}
+        border={"none"}
         cursor={"pointer"}
         bg={"#DBE2EF"}
         onClick={handleSearchResult}
+        w={"30vw"}
       >
         <Flex alignItems={"center"} gap={1}>
           <Flex alignItems={"center"} p={1}>
