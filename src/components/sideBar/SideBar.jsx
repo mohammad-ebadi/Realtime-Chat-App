@@ -13,8 +13,8 @@ function SideBar() {
         <SearchBar></SearchBar>
         <RecentUsers></RecentUsers>
       </VStack>
-      <Flex>
-        <Text textAlign={"center"} color={"white"}>
+      <Flex gap={3}>
+        <Text textAlign={"center"} color={"white"} fontSize={"14px"}>
           Built by Mohammad Ebadi
         </Text>
         <Link href="https://github.com/mohammad-ebadi" cursor={"pointer"} target="_blank"><Github></Github></Link>
