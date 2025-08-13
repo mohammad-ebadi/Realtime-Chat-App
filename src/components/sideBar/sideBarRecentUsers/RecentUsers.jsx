@@ -19,10 +19,6 @@ function RecentUsers() {
         <RecentUsersChat></RecentUsersChat>
         <RecentUsersChat></RecentUsersChat>
         <RecentUsersChat></RecentUsersChat>
-        <RecentUsersChat></RecentUsersChat>
-        <RecentUsersChat></RecentUsersChat>
-        <RecentUsersChat></RecentUsersChat>
-        <RecentUsersChat></RecentUsersChat>
       </Box>
     </>
   );
