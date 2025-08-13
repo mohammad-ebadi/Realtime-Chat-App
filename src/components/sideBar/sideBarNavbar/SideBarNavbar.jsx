@@ -16,7 +16,7 @@ function SideBarNavbar() {
             <Avatar
               name={user.username}
               src={user?.profilePicURL}
-              border={"1px solid white"}
+              border={"2px solid white"}
             >
               <AvatarBadge boxSize="1em" bg={"white"} cursor={"pointer"}>
                 <EditProfile></EditProfile>
