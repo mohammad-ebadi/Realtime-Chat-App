@@ -6,7 +6,7 @@ function RecentUsersChat() {
     
   }
   return (
-    <Box borderBottom={"1px solid white"} cursor={"pointer"} bg={"#3F72AF"} onClick={handleOpenChat} _hover={{bg:"#112D4E" , transition:"0.3s"}}>
+    <Box borderBottom={"1px solid gray"} cursor={"pointer"} bg={"#3F72AF"} onClick={handleOpenChat} _hover={{bg:"#112D4E" , transition:"0.3s"}}>
       <Flex alignItems={"center"} gap={1}>
         <Flex alignItems={"center"} p={1}>
           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
