@@ -28,5 +28,5 @@ export const Edit = () => (
 );
 
 export const Github = () => (
-  <Image src="/Github.svg" sizes="24px"></Image>
+  <Image src="/Github.svg" sizes="5px"></Image>
 );
