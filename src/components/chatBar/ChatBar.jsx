@@ -6,7 +6,7 @@ import ChatBarFooter from "./ChatBarFooter.jsx";
 
 function ChatBar() {
   return (
-    <Box bg={"#112D4E"} w={"69vw"}>
+    <Box bg={"#112D4E"} w={"68vw"}>
       <VStack gap={0}>
         <ChatBarNavbar></ChatBarNavbar>
         <ChatBarWindow></ChatBarWindow>
