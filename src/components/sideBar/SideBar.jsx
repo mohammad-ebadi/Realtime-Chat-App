@@ -13,7 +13,7 @@ function SideBar() {
         <SearchBar></SearchBar>
         <RecentUsers></RecentUsers>
       </VStack>
-      <Flex gap={3} mt={5}>
+      <Flex gap={3} mt={5} justifyContent={"center"} alignItems={"center"}>
         <Text textAlign={"center"} color={"white"} fontSize={"14px"}>
           Built by Mohammad Ebadi
         </Text>
