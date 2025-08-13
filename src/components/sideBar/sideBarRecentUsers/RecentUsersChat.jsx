@@ -13,8 +13,8 @@ function RecentUsersChat() {
         </Flex>
 
         <VStack align={"start"}>
-          <Text fontSize={"10px"} color={"white"}>Username</Text>
-          <Text fontSize={"12px"} color={"white"}>
+          <Text fontSize={"14px"} color={"white"}>Username</Text>
+          <Text fontSize={"10px"} color={"white"}>
             Hey whats up dud ? How are you doing?
           </Text>
         </VStack>
