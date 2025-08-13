@@ -8,7 +8,7 @@ function SearchResults({ username, profilePicURL }) {
       <Box
         borderBottom={"1px solid black"}
         cursor={"pointer"}
-        bg={"orange.400"}
+        bg={"#DBE2EF"}
         onClick={handleSearchResult}
       >
         <Flex alignItems={"center"} gap={1}>

@@ -37,7 +37,7 @@ function SearchBar() {
   };
 
   return (
-    <Flex direction="column" gap={3} bg={"orange.300"}>
+    <Flex direction="column" gap={3} bg={"#112D4E"}>
       <Input
         placeholder="Search username..."
         value={searchTerm}
