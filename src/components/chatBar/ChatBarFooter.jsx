@@ -5,7 +5,7 @@ import { Send } from '../../assets/Constants'
 function ChatBarFooter() {
   return (
     <Flex w={"67vw"} bg={"white"} alignItems={"center"}>
-      <Input placeholder='Enter your message . . .' size={"lg"}  border={"none"}  borderRadius={0} focusBorderColor='transparent' _focus={{_placeholder:{color:"blue.500"}}}></Input>
+      <Input placeholder='Enter your message . . .' size={"lg"}  border={"none"}  borderRadius={0} focusBorderColor='transparent' _focus={{_placeholder:{color:"#112D4E"}}} color={"#112D4E"}></Input>
       <Button bg={"transparent"} color={"blue.500"} _hover={{bg:"none", transform: "scale(1.2)"}}><Send></Send></Button>
     </Flex>
   )
