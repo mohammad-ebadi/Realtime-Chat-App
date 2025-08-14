@@ -5,3 +5,4 @@ export const useAuthStore = create((set) => ({
   setUser: (userData) => set({ user: userData }),
   clearUser: () => set({ user: null }),
 }));
+
