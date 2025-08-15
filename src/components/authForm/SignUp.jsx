@@ -62,6 +62,7 @@ function SignUp() {
           createdAt: serverTimestamp(),
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
+        await setDoc(doc(firestore, "userChats", newUser.user.uid), {})
 
         // custom hook for toast
         toast.success("Your Account Created Successfully");
