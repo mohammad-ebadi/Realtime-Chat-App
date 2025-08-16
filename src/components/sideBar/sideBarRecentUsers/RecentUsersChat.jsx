@@ -1,17 +1,73 @@
-import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+// import { Avatar, Box, Button, Flex, Text, VStack } from "@chakra-ui/react";
+// import React from "react";
 
-function RecentUsersChat({uid}) {
+// function RecentUsersChat({uid}) {
  
+//   return (
+//     <Box borderBottom={"1px solid gray"} cursor={"pointer"} bg={"#3F72AF"}  _hover={{bg:"#112D4E" , transition:"0.3s"}}>
+//       <Flex alignItems={"center"} gap={1}>
+//         <Flex alignItems={"center"} p={1}>
+//           <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+//         </Flex>
+
+//         <VStack align={"start"}>
+//           <Text fontSize={"14px"} color={"white"}>Username</Text>
+//           <Text fontSize={"10px"} color={"white"}>
+//             {uid}
+//           </Text>
+//         </VStack>
+//       </Flex>
+//     </Box>
+//   );
+// }
+
+// export default RecentUsersChat;
+
+
+
+import { Avatar, Box, Flex, Text, VStack } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from "../../../configs/Firebase";
+
+function RecentUsersChat({ uid }) {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userRef = doc(firestore, "users", uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          setUserData(userSnap.data());
+        }
+      } catch (err) {
+        console.error("Error fetching user data:", err);
+      }
+    };
+
+    if (uid) fetchUserData();
+  }, [uid]);
+
   return (
-    <Box borderBottom={"1px solid gray"} cursor={"pointer"} bg={"#3F72AF"}  _hover={{bg:"#112D4E" , transition:"0.3s"}}>
+    <Box
+      borderBottom={"1px solid gray"}
+      cursor={"pointer"}
+      bg={"#3F72AF"}
+      _hover={{ bg: "#112D4E", transition: "0.3s" }}
+    >
       <Flex alignItems={"center"} gap={1}>
         <Flex alignItems={"center"} p={1}>
-          <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+          <Avatar
+            name={userData?.username || "Unknown"}
+            src={userData?.profilePicURL || ""}
+          />
         </Flex>
-
         <VStack align={"start"}>
-          <Text fontSize={"14px"} color={"white"}>Username</Text>
+          <Text fontSize={"14px"} color={"white"}>
+            {userData?.username || "Unknown User"}
+          </Text>
           <Text fontSize={"10px"} color={"white"}>
             {uid}
           </Text>
