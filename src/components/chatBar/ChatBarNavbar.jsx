@@ -1,7 +1,11 @@
 import { Avatar, AvatarBadge, Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import { useHandleSelectedUser } from "../../../stores/useHandleSelectedUser.js";
+
 
 function ChatBarNavbar() {
+    const { setSelectedUser } = useHandleSelectedUser();
+  
   return (
     <Box bg={"#F9F7F7"} w={"full"} maxH={"73vh"} overflow={"auto"}>
       <Flex alignItems={"center"} justifyContent={"space-between"}>
@@ -9,7 +13,7 @@ function ChatBarNavbar() {
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" border={"2px solid #112D4E"}>
             <AvatarBadge boxSize="1em" bg="green.500" />
           </Avatar>
-          <Text color={"#112D4E"}>Username</Text>
+          <Text color={"#112D4E"}>{setSelectedUser.username}</Text>
         </Flex>
       </Flex>
     </Box>
