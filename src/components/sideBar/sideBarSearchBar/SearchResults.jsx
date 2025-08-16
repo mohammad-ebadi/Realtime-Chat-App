@@ -1,5 +1,5 @@
 import { Avatar, Box, Flex, Text, VStack } from "@chakra-ui/react";
-import { doc, setDoc , updateDoc , arrayUnion} from "firebase/firestore";
+import { doc , updateDoc , arrayUnion} from "firebase/firestore";
 import React from "react";
 import { firestore } from "../../../configs/Firebase";
 import { useAuthStore } from "../../../stores/useAuthStore";
