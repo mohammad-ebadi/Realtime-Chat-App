@@ -45,6 +45,8 @@ function GoogleAuth({ signIn }) {
           });
 
           toast.success("Account created successfully!");
+           // creating a new "userChats" collection in firestore
+                  await setDoc(doc(firestore, "userChats", user.uid), {})
         } else {
           // Existing user - get data from Firestore
           const existingUserData = userSnap.data();
