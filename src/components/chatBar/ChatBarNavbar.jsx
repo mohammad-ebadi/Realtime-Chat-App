@@ -1,6 +1,6 @@
 import { Avatar, AvatarBadge, Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import { useHandleSelectedUser } from "../../../stores/useHandleSelectedUser.js";
+import { useHandleSelectedUser } from "../../stores/useHandleSelectedUser";
 
 
 function ChatBarNavbar() {
