@@ -26,7 +26,7 @@ function GoogleAuth({ signIn }) {
         if (!userSnap.exists()) {
           // Create new user document
           const username = user.email.split("@")[0];
-          
+
           await setDoc(userRef, {
             uid: user.uid,
             email: user.email,
@@ -45,18 +45,19 @@ function GoogleAuth({ signIn }) {
           });
 
           toast.success("Account created successfully!");
-           // creating a new "userChats" collection in firestore
-                  await setDoc(doc(firestore, "userChats", user.uid), {})
+          // creating a new "userChats" collection in firestore
+          await setDoc(doc(firestore, "userChats", user.uid), {});
         } else {
           // Existing user - get data from Firestore
           const existingUserData = userSnap.data();
-          
+
           setUser({
             uid: user.uid,
             email: user.email,
             photoURL: existingUserData.profilePicURL || user.photoURL,
             username: existingUserData.username || user.email.split("@")[0],
-            profilePicURL: existingUserData.profilePicURL || user.photoURL || "",
+            profilePicURL:
+              existingUserData.profilePicURL || user.photoURL || "",
           });
 
           toast.success("Welcome back!");
@@ -66,7 +67,6 @@ function GoogleAuth({ signIn }) {
         setTimeout(() => {
           navigate("/");
         }, 1500);
-        
       } catch (firestoreError) {
         console.error("Firestore error:", firestoreError);
         // Fallback: set basic user data even if Firestore fails
@@ -77,22 +77,25 @@ function GoogleAuth({ signIn }) {
           username: user.email.split("@")[0],
           profilePicURL: user.photoURL || "",
         });
-        
-        toast.warning("Signed in but profile data couldn't be saved. Please try again later.");
+
+        toast.warning(
+          "Signed in but profile data couldn't be saved. Please try again later."
+        );
         setTimeout(() => {
           navigate("/");
         }, 1500);
       }
-      
     } catch (error) {
       console.error("Authentication error:", error);
-      
-      if (error.code === 'auth/popup-closed-by-user') {
+
+      if (error.code === "auth/popup-closed-by-user") {
         toast.warning("Sign-in was cancelled");
-      } else if (error.code === 'auth/popup-blocked') {
+      } else if (error.code === "auth/popup-blocked") {
         toast.error("Pop-up was blocked. Please allow pop-ups for this site.");
       } else {
-        toast.error(`Authentication failed: ${error.message || 'Unknown error'}`);
+        toast.error(
+          `Authentication failed: ${error.message || "Unknown error"}`
+        );
       }
     }
   };
