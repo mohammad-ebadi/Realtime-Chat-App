@@ -4,7 +4,7 @@ import { useHandleSelectedUser } from "../../stores/useHandleSelectedUser";
 
 
 function ChatBarNavbar() {
-    const { setSelectedUser } = useHandleSelectedUser();
+    const { selectedUser } = useHandleSelectedUser();
   
   return (
     <Box bg={"#F9F7F7"} w={"full"} maxH={"73vh"} overflow={"auto"}>
@@ -13,7 +13,7 @@ function ChatBarNavbar() {
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" border={"2px solid #112D4E"}>
             <AvatarBadge boxSize="1em" bg="green.500" />
           </Avatar>
-          <Text color={"#112D4E"}>{setSelectedUser.username}</Text>
+          <Text color={"#112D4E"}>{selectedUser.username}</Text>
         </Flex>
       </Flex>
     </Box>
