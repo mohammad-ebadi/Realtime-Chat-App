@@ -3,10 +3,14 @@ import { doc, setDoc } from "firebase/firestore";
 import React from "react";
 import { firestore } from "../../../configs/Firebase";
 import { useAuthStore } from "../../../stores/useAuthStore";
+import useAppToast from "../../../hooks/useAppToast";
+
 function SearchResults({ username, profilePicURL, searchedUserUid }) {
+  const toast = useAppToast()
   const { user } = useAuthStore();
   const handleSearchResult = async () => {
     await setDoc(doc(firestore, "userChats", user.uid), [searchedUserUid]);
+    toast.success("Ok")
   };
   return (
     <>
