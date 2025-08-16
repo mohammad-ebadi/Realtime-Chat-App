@@ -63,7 +63,7 @@ function SignUp() {
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
         // creating a new "userChats" collection in firestore
-        await setDoc(doc(firestore, "userChats", newUser.user.uid), {});
+        await setDoc(doc(firestore, "userChats", newUser.user.uid), []);
 
         // custom hook for toast
         toast.success("Your Account Created Successfully");

@@ -10,7 +10,7 @@ function SearchResults({ username, profilePicURL, searchedUserUid }) {
   const user = useAuthStore((state) => state.user);
   
   const handleSearchResult = async () => {
-    await setDoc(doc(firestore, "userChats", user.uid), {searchedUserUid});
+    await setDoc(doc(firestore, "userChats", user.uid), [searchedUserUid]);
     toast.success("Ok")
   };
   return (
