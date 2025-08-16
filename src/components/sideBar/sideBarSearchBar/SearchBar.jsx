@@ -27,6 +27,7 @@ function SearchBar() {
         setFoundUser({
           username: userData.username,
           profilePicURL: userData.profilePicURL || "",
+          searchedUserUid : userData.uid,
         });
       } else {
         setFoundUser(null);
@@ -53,6 +54,7 @@ function SearchBar() {
           <SearchResults
             username={foundUser.username}
             profilePicURL={foundUser.profilePicURL}
+            searchedUserUid = {foundUser.searchedUserUid}
           />
         )}
       </Flex>
