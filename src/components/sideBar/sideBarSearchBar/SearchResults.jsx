@@ -1,8 +1,13 @@
 import { Avatar, Box, Flex, Text, VStack } from "@chakra-ui/react";
+import { doc, setDoc } from "firebase/firestore";
 import React from "react";
-
+import { firestore } from "../../../configs/Firebase";
+import { useAuthStore } from "../../../stores/useAuthStore";
 function SearchResults({ username, profilePicURL, searchedUserUid }) {
-  const handleSearchResult = async () => {};
+  const { user } = useAuthStore();
+  const handleSearchResult = async () => {
+    await setDoc(doc(firestore, "userChats", user.uid), [searchedUserUid]);
+  };
   return (
     <>
       <Box
@@ -21,9 +26,7 @@ function SearchResults({ username, profilePicURL, searchedUserUid }) {
             <Text fontSize={"15px"} color={"#112D4E"}>
               {username}
             </Text>
-            {/* <Text>
-              {searchedUserUid}
-            </Text> */}
+            <Text>{searchedUserUid}</Text>
           </VStack>
         </Flex>
       </Box>
