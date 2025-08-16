@@ -1,8 +1,8 @@
 import { Avatar, Box, Flex, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
-function SearchResults({ username, profilePicURL,searchedUserUid }) {
-  const handleSearchResult = () => {};
+function SearchResults({ username, profilePicURL, searchedUserUid }) {
+  const handleSearchResult = async () => {};
   return (
     <>
       <Box
@@ -21,9 +21,9 @@ function SearchResults({ username, profilePicURL,searchedUserUid }) {
             <Text fontSize={"15px"} color={"#112D4E"}>
               {username}
             </Text>
-            <Text>
+            {/* <Text>
               {searchedUserUid}
-            </Text>
+            </Text> */}
           </VStack>
         </Flex>
       </Box>
