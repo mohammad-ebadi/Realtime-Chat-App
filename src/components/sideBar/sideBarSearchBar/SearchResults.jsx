@@ -1,5 +1,5 @@
 import { Avatar, Box, Flex, Text, VStack } from "@chakra-ui/react";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc , updateDoc , arrayUnion} from "firebase/firestore";
 import React from "react";
 import { firestore } from "../../../configs/Firebase";
 import { useAuthStore } from "../../../stores/useAuthStore";
@@ -10,7 +10,7 @@ function SearchResults({ username, profilePicURL, searchedUserUid }) {
   const user = useAuthStore((state) => state.user);
   
   const handleSearchResult = async () => {
-    await setDoc(doc(firestore, "userChats", user.uid), {searchedUserUids:searchedUserUid });
+    await updateDoc(doc(firestore, "userChats", user.uid), {searchedUserUids:arrayUnion(searchedUserUid) });
     toast.success("Ok")
   };
   return (
