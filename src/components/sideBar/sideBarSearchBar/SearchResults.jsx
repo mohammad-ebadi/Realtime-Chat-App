@@ -7,7 +7,7 @@ import useAppToast from "../../../hooks/useAppToast";
 
 function SearchResults({ username, profilePicURL, searchedUserUid }) {
   const toast = useAppToast()
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
   const handleSearchResult = async () => {
     await setDoc(doc(firestore, "userChats", user.uid), [searchedUserUid]);
     toast.success("Ok")
