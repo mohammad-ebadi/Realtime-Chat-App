@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Flex, Input } from "@chakra-ui/react";
 import { collection, query, where, getDocs, limit } from "firebase/firestore";
 import { firestore } from "../../../configs/Firebase.js";
-import SearchResult from "./SearchResults.jsx";
+import SearchResults from "./SearchResults.jsx";
 
 function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -50,7 +50,7 @@ function SearchBar() {
           onChange={handleSearch}
         />
         {foundUser && (
-          <SearchResult
+          <SearchResults
             username={foundUser.username}
             profilePicURL={foundUser.profilePicURL}
           />
