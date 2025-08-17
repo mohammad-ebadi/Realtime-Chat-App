@@ -7,7 +7,6 @@ import { useHandleSelectedUser } from "../../../stores/useHandleSelectedUser.js"
 function RecentUsersChat({ uid }) {
   const [userData, setUserData] = useState(null);
   const { setSelectedUser } = useHandleSelectedUser();
-  const {selectedUser} = useHandleSelectedUser()
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -23,7 +22,7 @@ function RecentUsersChat({ uid }) {
     };
 
     if (uid) fetchUserData();
-  }, [uid , selectedUser]);
+  }, [uid]);
 
   const handleSelect = () => {
     if (userData) {

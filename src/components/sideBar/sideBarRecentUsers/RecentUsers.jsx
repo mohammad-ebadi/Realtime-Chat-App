@@ -4,12 +4,10 @@ import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "../../../configs/Firebase.js";
 import { useAuthStore } from "../../../stores/useAuthStore.js";
 import RecentUsersChat from "./RecentUsersChat.jsx";
-import {useHandleSelectedUser} from "../../../stores/useHandleSelectedUser.js"
 
 function RecentUsers() {
   const user = useAuthStore((state) => state.user);
   const [searchedUserUids, setSearchedUserUids] = useState([]);
-  const {selectedUser} = useHandleSelectedUser()
 
   useEffect(() => {
     const fetchUserChats = async () => {
@@ -30,7 +28,7 @@ function RecentUsers() {
     };
 
     fetchUserChats();
-  }, [user?.uid , selectedUser]);
+  }, [user?.uid]);
 
   return (
     <>
