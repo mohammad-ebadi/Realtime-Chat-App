@@ -13,7 +13,7 @@ function ChatBarNavbar() {
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" border={"2px solid #112D4E"}>
             <AvatarBadge boxSize="1em" bg="green.500" />
           </Avatar>
-          <Text color={"#112D4E"}>{selectedUser.username}</Text>
+          <Text color={"#112D4E"}>{selectedUser?.username}</Text>
         </Flex>
       </Flex>
     </Box>
