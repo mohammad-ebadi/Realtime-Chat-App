@@ -1,25 +1,3 @@
-// import { Box, Text } from "@chakra-ui/react";
-// import React from "react";
-// import RecentUsersChat from "./RecentUsersChat.jsx";
-
-// function RecentUsers() {
-//   return (
-//     <>
-//       <Text color={"gray.500"} textAlign={"center"}>
-//         Recent Chats
-//       </Text>
-//       <Box w={"full"} maxH={"55vh"} overflow={"auto"}>
-//         <RecentUsersChat></RecentUsersChat>
-//       </Box>
-//     </>
-//   );
-// }
-
-// export default RecentUsers;
-
-
-
-
 import { Box, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
