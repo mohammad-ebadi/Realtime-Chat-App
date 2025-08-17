@@ -17,6 +17,7 @@ function SearchBar() {
       return;
     }
 
+    
     try {
       const usersRef = collection(firestore, "users");
       const q = query(usersRef, where("username", "==", value), limit(1));
