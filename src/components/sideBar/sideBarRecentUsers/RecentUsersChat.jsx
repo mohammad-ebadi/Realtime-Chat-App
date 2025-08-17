@@ -67,6 +67,8 @@ function RecentUsersChat({ uid }) {
           <Text fontSize={"14px"} color={"white"}>
             {userData?.username || "Unknown User"}
           </Text>
+          
+          {/* latest message */}
           <Text fontSize={"10px"} color={"white"}>
             {uid}
           </Text>
