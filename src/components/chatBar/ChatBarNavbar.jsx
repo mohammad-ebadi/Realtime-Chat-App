@@ -10,7 +10,7 @@ function ChatBarNavbar() {
       <Flex alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"} gap={1} p={2}>
           <Avatar
-            name="Dan Abrahmov"
+            name={selectedUser?.username}
             src={selectedUser?.profilePicURL}
             border={"2px solid #112D4E"}
           >
