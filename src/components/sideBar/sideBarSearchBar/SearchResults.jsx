@@ -14,7 +14,7 @@ function SearchResults({ username, profilePicURL, searchedUserUid }) {
     await updateDoc(doc(firestore, "userChats", user.uid), {
       searchedUserUids: arrayUnion(searchedUserUid),
     });
-    toast.success("Ok");
+    toast.success("Chat created successfully , Refresh the page");
     setShowResult(false);
   };
   return (
